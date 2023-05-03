@@ -1,0 +1,1147 @@
+/* Registrar usuarios */
+.contenedor_registrar_usuarios {
+	justify-content: center;
+	text-align: center;
+	padding: 5%;
+}
+
+.registrar_usuarios {
+	background-color: white;
+	border-radius: 20px;
+	padding: 2%;
+	width: 500px;
+	margin: auto;
+}
+
+.inputs {
+	display: flex;
+	gap: 2%;
+}
+
+.inputs .contenido_registrar_usuarios {
+	text-align: left;
+	margin: auto;
+	padding-left: 10px;
+	margin-left: 10px;
+}
+
+.inputs .input_registrar_usuarios {
+	margin: 3%;
+	padding: 3%;
+	border-radius: 3px;
+	border: solid 1px #4d4d4d;
+	margin-left: 0px;
+	border-radius: 10px;
+}
+
+.inputs .label_registrar_usuarios {
+	margin: 3%;
+	margin-left: 0px;
+}
+
+.inputs .select_registrar_usuarios {
+	margin: 3%;
+	padding: 3%;
+	border-radius: 3px;
+	border: solid 1px #4d4d4d;
+	width: 179px;
+	border-radius: 10px;
+	margin-left: 0px;
+}
+
+.btnRegistrarUsuario {
+	margin: 3%;
+	padding: 2%;
+	border-radius: 3px;
+	border: solid 1px #acd248;
+	background-color: #acd248;
+	cursor: pointer;
+}
+
+/* fin registrar usuarios */
+
+/* Listar prestamos */
+.contenedor_listar_prestamos {
+	background-color: #ffffff;
+	margin-right: 10px;
+	height: 900px;
+}
+
+.select_empleado_listar_prestamos {
+	width: 170px;
+	margin-top: 10px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	height: 25px;
+}
+
+.h4_listar_prestamos {
+	margin-top: 10px;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.p_listar_prestamos {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.logo_listar_prestamos {
+	width: 20%;
+	display: flex;
+	margin: auto;
+	margin-bottom: 20px;
+	padding-top: 30px;
+}
+
+.table_listar_prestamos {
+	text-align: center;
+	width: 80%;
+	background-color: #ffffff;
+	border-collapse: collapse;
+	justify-content: center;
+	margin: auto;
+}
+
+.td_listar_prestamos,
+.th_listar_prestamos {
+	border: 1px solid black;
+}
+
+.th_listar_prestamos {
+	background-color: #e1e1e1;
+}
+
+.input_listar_prestamos {
+	width: 20%;
+	text-align: center;
+}
+
+.select_listar_prestamos {
+	width: 40%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.btn_devolver_listar_prestamos {
+	border-radius: 5px;
+	background-color: #ffff38;
+	border: none;
+}
+
+.btn_reparada_listar_prestamos {
+	border-radius: 5px;
+	background-color: #9ed248;
+	border: none;
+}
+
+.btn_reparar_listar_prestamos {
+	border-radius: 5px;
+	background-color: #ff0000;
+	border: none;
+	color: #e1e1e1;
+}
+
+.btn_listar_listar_prestamos {
+	border-radius: 5px;
+	background-color: #ffff38;
+	border: none;
+	display: block;
+	margin-bottom: 40px;
+	width: 45px;
+	height: 25px;
+}
+
+/* Fin listar prestamos */
+
+/* Asignar herramientas */
+
+.contenedor_asignar_herramienta {
+	background-color: #ffffff;
+	margin-right: 10px;
+	height: 900px;
+}
+
+.table_asignar_herramienta {
+	text-align: center;
+	width: 80%;
+	background-color: #ffffff;
+	border-collapse: collapse;
+	justify-content: center;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.td_asignar_herramienta,
+.th_asignar_herramienta {
+	border: 1px solid black;
+}
+
+.th_asignar_herramienta {
+	background-color: #e1e1e1;
+}
+
+.input_asignar_herramienta {
+	width: 20%;
+	text-align: center;
+}
+
+.select_asignar_herramienta {
+	width: 40%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.logo_asignar_herramienta {
+	width: 20%;
+	display: flex;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.p_asignar_herramienta {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.div1_asignar_herramienta {
+	display: table-cell;
+	text-align: center;
+	padding-right: 20px;
+}
+
+.select_nom_empleado_asignar_herramienta {
+	width: 170px;
+	border-radius: 5px;
+	height: 25px;
+}
+
+.h4_asignar_herramienta {
+	margin-left: 30px;
+}
+
+.btn_asignar_asignar_herramienta {
+	border-radius: 5px;
+	background-color: #9ed248;
+	border: none;
+}
+
+
+.btn_no_asignar_asignar_herramienta {
+	border-radius: 5px;
+	background-color: #ff0000;
+	border: none;
+	color: #e1e1e1;
+}
+
+.btn_prestar_asignar_herramienta {
+	border-radius: 5px;
+	background-color: #9ed248;
+	border: none;
+	height: 50px;
+	width: 80px;
+	font-size: 15px;
+}
+
+.btn_predeterminadas_asignar_herramienta {
+	border-radius: 5px;
+	background-color: #929292;
+	border: none;
+	font-size: 15px;
+	display: block;
+	width: 300px;
+	height: 30px;
+}
+
+.div_predeterminadas_asignar_herramienta {
+	float: right;
+}
+
+
+/* Fin asignar herramientas */
+
+/* Registrar novedad */
+
+.form_registrar_novedad {
+	background-color: white;
+	border-radius: 20px;
+	padding: 2%;
+	width: 350px;
+	border: 1px solid black;
+	margin: auto;
+}
+
+
+.boton_registrar_registrar_novedad {
+	color: black;
+	background-color: green;
+	border-radius: 3px;
+	width: 23%;
+	height: 40px;
+	margin: 7%;
+}
+
+.boton_cancelar_registrar_novedad {
+	width: 23%;
+	height: 40px;
+	margin: 7%;
+	color: white;
+	background-color: red;
+	border-radius: 3px;
+
+}
+
+.caja_registrar_novedad {
+	margin: 0 50px;
+}
+
+.input_largo_registrar_novedad {
+	width: 90%;
+}
+
+.input_pequeño_registrar_novedad {
+	width: 40%;
+}
+
+/* Fin registrar novedad */
+/* Listar novedad */
+
+.tabla_listar_novedad {
+	background-color: #ffffff;
+	border: 1px solid #808080;
+	border-collapse: collapse;
+	width: auto;
+	height: auto;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 10px;
+}
+
+.tr_lista_titulo_listar_novedad {
+	background-color: #dbdbdb;
+	border-collapse: collapse;
+}
+
+.tr_lista_listar_novedad {
+	border-collapse: collapse;
+}
+
+.caja_listar_novedad {
+	border: 1px solid rgb(122, 122, 122);
+	border-radius: 10px;
+	background-color: rgb(255, 255, 255);
+	margin: auto;
+}
+
+
+.titulo_listar_novedad {
+	font-size: 30px;
+}
+
+.icono_lista_listar_novedad {
+	width: 32px;
+}
+
+.icono_lista_listar_novedad1 {
+	width: 40px;
+}
+
+.icono_lista_listar_novedad2 {
+	width: 45px;
+}
+
+.td_lista_listar_novedad {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+/* Fin listar novedad */
+
+/* Listar roles */
+.contenedor_listar_roles {
+	margin-right: 10px;
+	background-color: #ffffff;
+	height: 100%;
+}
+
+.contenedor_listar_roles h1 {
+	text-align: center;
+	padding: 5%;
+	left: 300px;
+
+}
+
+.contenedor_listar_roles .encabezado_tabla {
+	background-color: #777777;
+	font-weight: bold;
+	text-align: center;
+}
+
+.contenedor_listar_roles tr {
+	text-align: center;
+}
+
+.contenedor_listar_roles .contenedor_listarroles {
+	justify-content: center;
+	margin: auto;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	position: absolute;
+	left: 400px;
+}
+
+.contenedor_listar_roles .contenedor_listarUsuarios {
+	justify-content: center;
+	margin: auto;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	position: absolute;
+	left: 320px;
+}
+
+.contenedor_listar_roles table {
+	border: solid 2px #979797;
+	border-collapse: collapse;
+	width: 500px;
+	margin: 1%;
+	background-color: white;
+
+}
+
+.contenedor_listar_roles td {
+	border: solid 2px #979797;
+}
+
+.contenedor_listar_roles ul {
+	list-style: none;
+	text-align: left;
+}
+
+.contenedor_listar_roles .operaciones img {
+	width: 30px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.contenedor_listar_roles td {
+	padding: 15px;
+}
+
+.contenedor_listar_roles .registrarRol {
+	padding: 10px;
+	font-size: 20px;
+	top: 20px;
+	border-radius: 7px;
+	cursor: pointer;
+	background-color: green;
+	border: solid 1px green;
+}
+
+/* Fin listar roles */
+
+/* Listra usuarios */
+
+.contenedor_listar_usuarios {
+	position: absolute;
+	margin-right: 10px;
+	background-color: #ffffff;
+	height: 100%;
+}
+
+.contenedor_listar_usuarios h1 {
+	text-align: center;
+	left: 300px;
+
+}
+
+.contenedor_listar_usuarios .encabezado_tabla {
+	background-color: #777777;
+	font-weight: bold;
+	text-align: center;
+}
+
+.contenedor_listar_usuarios tr {
+	text-align: center;
+}
+
+.contenedor_listar_usuarios .contenedor_listarUsuarios {
+	justify-content: center;
+	margin: auto;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	margin: 10px;
+}
+
+.contenedor_listar_roles .contenedor_listarUsuarios {
+	justify-content: center;
+	margin: auto;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	left: 320px;
+}
+
+.contenedor_listar_usuarios table {
+	border: solid 2px #979797;
+	border-collapse: collapse;
+	width: 500px;
+	margin: 1%;
+	background-color: white;
+
+}
+
+.contenedor_listar_usuarios td {
+	border: solid 2px #979797;
+}
+
+.contenedor_listar_usuarios ul {
+	list-style: none;
+	text-align: left;
+}
+
+.contenedor_listar_usuarios .operaciones img {
+	width: 30px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.contenedor_listar_usuarios td {
+	padding: 15px;
+}
+
+.contenedor_listar_usuarios .registrarUsuario {
+	position: absolute;
+	padding: 10px;
+	font-size: 20px;
+	top: 20px;
+	border-radius: 7px;
+	cursor: pointer;
+	background-color: green;
+	border: solid 1px green;
+}
+
+/* Fin listra usuarios */
+
+/* Listar Solicitudes de prestamo de herramientas */
+.contenedor_listar_solicitudes {
+	background-color: #ffffff;
+	margin-right: 10px;
+	height: 900px;
+}
+
+.table_listar_solicitudes {
+	text-align: center;
+	width: 80%;
+	background-color: #ffffff;
+	border-collapse: collapse;
+	justify-content: center;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.td_listar_solicitudes,
+.th_listar_solicitudes {
+	border: 1px solid black;
+}
+
+.th_listar_solicitudes {
+	background-color: #e1e1e1;
+}
+
+.input_listar_solicitudes {
+	width: 20%;
+	text-align: center;
+}
+
+.select_listar_solicitudes {
+	width: 40%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.logo_listar_solicitudes {
+	width: 20%;
+	display: flex;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.p_listar_solicitudes {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.div1_listar_solicitudes {
+	display: table-cell;
+	text-align: center;
+	padding-right: 20px;
+}
+
+.select_nom_empleado_listar_solicitudes {
+	width: 170px;
+	border-radius: 5px;
+	height: 25px;
+}
+
+.h4_listar_solicitudes {
+	margin-left: 30px;
+}
+
+.btn_asignar_listar_solicitudes {
+	border-radius: 5px;
+	background-color: #9ed248;
+	border: none;
+}
+
+
+.btn_no_asignar_listar_solicitudes {
+	margin-right: 5px;
+	border-radius: 5px;
+	background-color: #ff0000;
+	border: none;
+	color: #e1e1e1;
+}
+
+.btn_prestar_listar_solicitudes {
+	border-radius: 5px;
+	background-color: #9ed248;
+	border: none;
+	height: 50px;
+	width: 80px;
+	font-size: 15px;
+}
+
+.btn_predeterminadas_listar_solicitudes {
+	border-radius: 5px;
+	background-color: #929292;
+	border: none;
+	font-size: 15px;
+	display: block;
+	width: 300px;
+	height: 30px;
+}
+
+.div_predeterminadas_listar_solicitudes {
+	float: right;
+}
+
+/* Fin listar Solicitudes de prestamo de herramientas */
+
+
+/* Modificar roles */
+.contenedor_modificar_roles {
+	justify-content: center;
+	display: flex;
+}
+
+.contenedor_modificar_roles table {
+	background-color: white;
+	margin: 50px;
+}
+
+.contenedor_modificar_roles .encabezado_tabla_modificar_roles {
+	background-color: grey;
+	height: 25px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.contenedor_modificar_roles label {
+	font-size: 17px;
+	margin: 5px;
+}
+
+.contenedor_modificar_roles input {
+	font-size: 17px;
+	margin: 8px;
+	padding: 5px;
+}
+
+.botones_modificar_roles {
+	text-align: center;
+	padding: 20px;
+}
+
+.botones_modificar_roles .modificar {
+	background-color: greenyellow;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.botones_modificar_roles .cancelar {
+	background-color: red;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+}
+
+/* Fin modificar roles */
+
+/* añadir rol */
+.contenedor_registrar_roles {
+	justify-content: center;
+	text-align: center;
+	padding: 5%;
+}
+
+.contenedor_registrar_roles form {
+	background-color: white;
+	border-radius: 20px;
+	padding: 2%;
+	width: 500px;
+	margin: auto;
+}
+
+.contenedor_registrar_roles .inputs {
+	display: flex;
+	gap: 2%;
+}
+
+.contenedor_registrar_roles .inputs ul {
+	text-align: left;
+	margin: auto;
+}
+
+.contenedor_registrar_roles .inputs input {
+	margin: 3%;
+	padding: 3%;
+	border-radius: 3px;
+	border: solid 1px #4d4d4d;
+}
+
+.contenedor_registrar_roles .inputs label {
+	margin: 3%;
+}
+
+.contenedor_registrar_roles .inputs select {
+	margin: 3%;
+	padding: 3%;
+	border-radius: 3px;
+	border: solid 1px #4d4d4d;
+	width: 179px;
+}
+
+.contenedor_registrar_roles .btnRegistrarUsuario {
+	margin: 3%;
+	padding: 2%;
+	border-radius: 3px;
+	border: solid 1px #acd248;
+	background-color: #acd248;
+	cursor: pointer;
+}
+
+.contenedor_registrar_roles .btnCancelar {
+	margin: 3%;
+	padding: 2%;
+	border-radius: 3px;
+	border: solid 1px red;
+	background-color: red;
+	cursor: pointer;
+	color: white;
+
+}
+
+.contenedor_registrar_roles .permisos_registrar_roles {
+	display: flex;
+	gap: 10px;
+	border: 1px solid black;
+	padding: 15px;
+
+}
+
+.contenedor_registrar_roles .permisos_registrar_roles .fila1 {
+	border: 1px solid black;
+	width: 50%;
+	text-align: left;
+	padding: 2px;
+}
+
+.contenedor_registrar_roles .permisos_registrar_roles .fila2 {
+	border: 1px solid black;
+	width: 50%;
+	text-align: left;
+	padding: 2px;
+
+}
+
+.contenedor_registrar_roles .permisos_registrar_roles .icon_permisos {
+	width: 30px;
+	margin: 2px;
+}
+
+/* Fin añadir rol */
+
+/* Modificar usuarios */
+.contenedor_modificar_empleados {
+	justify-content: center;
+	display: flex;
+}
+
+.contenedor_modificar_empleados table {
+	background-color: white;
+	margin: 50px;
+}
+
+.contenedor_modificar_empleados .encabezado_tabla_modificar_roles {
+	background-color: grey;
+	height: 25px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.contenedor_modificar_empleados label {
+	font-size: 17px;
+	margin: 5px;
+}
+
+.contenedor_modificar_empleados input {
+	font-size: 17px;
+	margin: 8px;
+	padding: 5px;
+}
+
+.contenedor_modificar_empleados {
+	text-align: center;
+	padding: 20px;
+}
+
+.botones_modificar_empleado .modificar {
+	background-color: greenyellow;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.botones_modificar_empleado .cancelar {
+	background-color: red;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+}
+
+/* Fin modificar usuarios */
+
+/* Registrar herramienta */
+.form_registrar_herramienta {
+	background-color: white;
+	border-radius: 10px;
+	padding: 2%;
+	width: 500px;
+	margin: auto;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.input_registrar_herramienta {
+	display: flex;
+	gap: 2%;
+}
+
+.input_registrar_herramienta .ul_registrar_herramienta {
+	text-align: left;
+	margin: auto;
+}
+
+.input_registrar_herramienta {
+	margin: 3%;
+	padding: 2.5%;
+	border-radius: 3px;
+
+}
+
+.input_registrar_herramienta .label_registrar_herramienta {
+	margin: 3%;
+}
+
+.input_registrar_herramienta {
+	margin: 3%;
+	padding: 2.5%;
+	border-radius: 3px;
+
+}
+
+.boton_aceptar_registrar_herramienta {
+	color: black;
+	background-color: #4c7a34;
+	border-radius: 3px;
+	width: 15%;
+	height: 40px;
+	margin: 7%;
+}
+
+.boton_cancelar_registrar_herramienta {
+	color: rgb(0, 0, 0);
+	background-color: red;
+	border-radius: 3px;
+	width: 15%;
+	height: 40px;
+	margin: 7%;
+}
+
+/* Fin registrar herramienta */
+/* Master herramientas */
+
+.lista_master_herramienta {
+	background-color: white;
+	border-radius: 10px;
+	padding: 2%;
+	width: 90%;
+	margin: auto;
+}
+
+.table_master_herramienta {
+	border: solid 2px #979797;
+	border-collapse: collapse;
+	width: 800px;
+	margin: 2%;
+	background-color: white;
+
+}
+
+.space_master_herramienta {
+	border: solid 2px #979797;
+	padding: 15px;
+}
+
+.encabezado_master_herramienta {
+	background-color: #cecece;
+}
+
+.modificar_master_herramienta {
+	width: 30px;
+}
+
+/* Fin master herramienta */
+
+/* Agendar servicio */
+.textoagendamiento {
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 7px;
+
+}
+
+.logo2agendamiento {
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.formularioagendamiento {
+
+	border-radius: 6px;
+	color: black;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	text-align: left;
+	border: 1px solid #000;
+	padding-top: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.contenedor2agendamiento {
+	padding-top: 20px;
+}
+
+.contenedoragendamiento {
+	display: flex;
+	flex-direction: row;
+
+}
+
+.columna1agendamiento {
+
+	padding-left: 30px;
+}
+
+.columna2agendamiento {
+
+	padding-left: 10px;
+}
+
+.tituloagendamiento {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding-top: 20px;
+	font-weight: bold;
+
+}
+
+.botonagendamiento {
+	align-self: center;
+	border: none;
+	width: 70px;
+	background: #9ed248;
+	height: 30px;
+
+}
+
+.inputagendamiento {
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 5px;
+	border-radius: 2px;
+	border: 1px solid gray;
+	width: 200px;
+	height: 30px;
+
+
+}
+
+/* Fin agendar servicio */
+
+/* Registrar ervicio */
+.registrar_Servicios {
+	background-color: white;
+	border-radius: 10px;
+	padding: 2%;
+	width: 500px;
+	margin: auto;
+}
+
+.input_Servicios {
+	display: flex;
+
+}
+
+.input_Servicios ul {
+	text-align: left;
+	margin: auto;
+}
+
+.input_Servicios select {
+	padding: 2.5%;
+	border-radius: 3px;
+
+}
+
+
+.btn_registrar_Servicios {
+	color: black;
+	background-color: #4c7a34;
+	border-radius: 3px;
+	width: 15%;
+	height: 40px;
+	margin: 7%;
+}
+
+.cancelar_Servicios {
+	color: rgb(0, 0, 0);
+	background-color: red;
+	border-radius: 3px;
+	width: 15%;
+	height: 40px;
+	margin: 7%;
+
+}
+
+.inp_Servicios {
+	height: 30px;
+	width: 200px;
+}
+
+.tipo_Servicios {
+	height: 30px;
+	width: 200px;
+}
+
+/* Fin registrar servicio */
+
+/* Modificar herramienta e insumo */
+.boton_aceptar_modificar_herramienta {
+	color: black;
+	background-color: #f4eb49;
+	border-radius: 3px;
+	width: 25%;
+	height: 40px;
+	margin: 7%;
+	border: none;
+}
+
+.boton_cancelar_modificar_herramienta {
+	color: rgb(0, 0, 0);
+	background-color: red;
+	border-radius: 3px;
+	width: 25%;
+	height: 40px;
+	margin: 7%;
+	border: none;
+
+}
+
+.titulo_modificar_herramienta {
+	margin: 0;
+	background-color: #979797;
+	border: none;
+	border-bottom: 1px solid black;
+	padding: 3px;
+}
+
+.input_modificar_herramienta {
+	border: none;
+	border-bottom: 1px solid gray;
+	width: 80%;
+}
+
+.form_modificar_herramienta {
+	background-color: white;
+	width: 300px;
+	margin: auto;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	border: 1px solid black;
+}
+
+/* Fin modificar herramienta e insumo */
+
+/* listar servicios */
+.tabla_servicios {
+	background-color: rgb(203, 203, 203);
+}
+
+.encabezado_servicios {
+	background-color: rgb(203, 203, 203);
+}
+
+.contenedor_servicios {
+	background-color: white;
+	border-radius: 10px;
+	padding: 2%;
+	width: 800px;
+	margin: auto;
+}
+
+.fila_servicios {
+	height: 60px;
+	text-align: center;
+
+}
+
+/* Fin listar servicios */

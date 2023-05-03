@@ -1,0 +1,257 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+
+body {
+    background-color: #e6e6e6;
+}
+
+
+
+
+.contenedor {
+    background-color: #fff;
+    align-items: center;
+    margin: 70px 35px;
+    border-radius: 10px;
+}
+
+.button{ 
+    padding: 30px; 
+    background: light-gray; 
+    color: black; 
+  } 
+.button:hover { 
+    padding: 30px; 
+    background: blue; 
+    color: white; 
+  } 
+.button:active { 
+    padding: 30px; 
+    background: gray; 
+    color: white; 
+  } 
+
+
+.verde{
+    background-color: #9ed248;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    margin: 5px;
+    padding: 10px;
+}
+.rojo{
+    background-color: #e61610;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    margin: 5px;
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    text-align: center;
+    align-items: center;
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+
+body {
+    background-color: #e6e6e6;
+}
+
+
+.contenedor {
+    background-color: #fff;
+    align-items: center;
+    margin: 70px 35px;
+    border-radius: 10px;
+}
+
+
+.operaciones {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    float: right;
+    overflow: auto;
+}
+.operaciones button{
+    width: 300px;
+    background-color: #9ed248;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+
+
+.logoytitulo {
+    text-align: center;
+    align-items: center;
+    overflow: auto;
+    padding: 15px 0;
+}
+
+
+.grid-container {
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.grid-container2 {
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+
+.grid-item {
+    padding: 5px;
+    text-align: center;
+}
+
+
+.grid-container select {
+    width: 120px;
+    text-align: center;
+    align-items: center;
+    padding: 4px;
+    margin: 5px;
+}
+.grid-container2 select {
+    width: 120px;
+    text-align: center;
+    align-items: center;
+    padding: 4px;
+    margin: 5px;
+}
+
+
+.tabla {
+    padding: 15px ;
+    overflow: auto;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    text-align: center;
+    align-items: center;
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+button{
+    width: 100px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+
+.verde{
+    background-color: #9ed248;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    margin: 5px;
+    padding: 10px;
+    width: 130px;
+}
+.rojo{
+    background-color: #e61610;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    margin: 5px;
+    padding: 10px;
+    width: 130px;
+
+
+}
+.herramientasAsignadas{
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* listado de prestamos_herramientas dañadas */
+.empleadoyboton{
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+.amarillo{
+    background-color: #fff243;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    width: 130px;
+}
+h3{
+    text-align: center;
+    margin: 10px;
+    font-size: 20px;
+}
+.empleadoyboton select{
+    width: 120px;
+    text-align: center;
+    align-items: center;
+    padding: 4px;
+    margin: 5px;
+}
+.tituloyusuario{
+    text-align: center;
+}
+
+
+
+
