@@ -1,11 +1,3 @@
-    
-    
-<?php
-include("../Modelo/conexion.php");
-session_start();
-$id_usuario = $_SESSION["id"];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,12 +48,9 @@ $id_usuario = $_SESSION["id"];
         <br><br>
         <div class="Boton">
             <button class="BotonVerde" onclick="ModificarAgendamiento()">Aceptar</button>
-            <button class="BotonRojo" onclick="CerrarModal()">Cancelar</button>
+            <button class="BotonRojo" onclick="cerrarModal()">Cancelar</button>
         </div>
     </dialog>
-<script src="js/main.js"></script>
-
-<script src="js/jquery-3.3.1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		ListarAgendamientoAdministrador();

@@ -1,3 +1,9 @@
+<?php
+include("../Modelo/conexion.php");
+session_start();
+$id_usuario = $_SESSION["id"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +45,11 @@
     </div>
 
 
+<script src="Vista/assets/js/main.js"></script>
 
+<script src="Vista/assets/js/jquery-3.3.1.min.js"></script>
 <script>
 	$(document).ready(function() {
-		ListarAgendamiento();
+		listarAgendamiento();
 	});
 </script>

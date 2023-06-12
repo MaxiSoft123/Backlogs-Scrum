@@ -8,31 +8,6 @@ menuItems.forEach(function (item) {
     });
 });
 
-function cargarpagina(urlPagina) {
-    $.ajax({
-        type: "POST",
-        url: urlPagina,
-        data: {},
-        success: function (datos) {
-            $('#EspacioHijo').html(datos);
-        }
-    });
-}
-
-// Funcionalidad del menu modal
-var abrirMenuBtn = document.getElementById('abrir-menu');
-var menuModal = document.getElementById('menu-modal');
-
-abrirMenuBtn.addEventListener('click', function () {
-    menuModal.style.display = 'block';
-});
-
-menuModal.addEventListener('click', function (e) {
-    if (e.target === menuModal) {
-        menuModal.style.display = 'none';
-    }
-});
-
 // metodo para pasar de pagina
 function Metodo(pagina) {
     $.ajax({
@@ -47,7 +22,7 @@ function Metodo(pagina) {
 };
 
 // Cerrar modal
-function cerrarModal(){
+function CerrarModal(){
     const modal = document.querySelector("#modal");
     modal.classList.add("hide");
     modal.addEventListener("animationend", function close() {

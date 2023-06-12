@@ -37,9 +37,9 @@ function ListarAgendamiento()
         foreach ($resultado3 as $fila3) {    
             
         }
-        $color = "Estado Activo";
+        $Color = "Estado Activo";
         if($fila['Estado']=="Pendiente"){
-            $color="Estado Inactivo";
+            $Color="Estado Inactivo";
         }
       
         echo'
@@ -52,7 +52,8 @@ function ListarAgendamiento()
         
         <td >',$fila3['Nombre'],'</td>
         <td >',$fila3['Cantidad'],'</td>
-        <td >',$fila['Estado'],' </td>
+        <td ><button class="',$Color,'">',$fila['Estado'],'</td></button>
+       
         </tr>
         ';
     }

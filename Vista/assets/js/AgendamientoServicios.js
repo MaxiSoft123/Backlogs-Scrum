@@ -203,15 +203,6 @@ function ModalAgendamiento(id_agendamiento) {
 }
 
 
-function CerrarModal(){
-    const modal = document.querySelector("#modal");
-    modal.classList.add("hide");
-    modal.addEventListener("animationend", function close() {
-    modal.classList.remove("hide");
-    modal.close();
-    modal.removeEventListener("animationend", close);
-  });
-}
 
 function ModalListar(IdServicio) {
     window.modal.showModal();
@@ -251,17 +242,6 @@ function ModificarListar() {
 
 
 
-function Metodo(pagina) {
-    $.ajax({
-        type: "POST",
-        url: pagina,
-        data: {},
-        success: function (data) {
-            $("#qCarga").html(data);
-        }
-    }
-    );
-};
 
 
 function ModificarAgendamiento() {
@@ -284,10 +264,11 @@ function ModificarAgendamiento() {
         },
         success: function (data) {
             alert(data);
+            CerrarModal();
             ListarAgendamientoAdministrador();
         
         }
 
     });
-    Metodo("ListarAgendamientoAdmin:.php")
+
 }

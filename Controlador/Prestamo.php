@@ -439,7 +439,7 @@ function DevolverDañada(){
 
     function ListarPrestamoEmpleado(){
         session_start();
-        $IdEmpleado = $_SESSION['IdEmpleado'];
+        $IdEmpleado = $_SESSION['IdUsuario'];
         $Conexion = new PDODB();
         $Conexion->Conectar();
         $InstruccionSQL = "SELECT prestamo.IdEmpleado, prestamo.IdPrestamo, herramientainsumo.Tipo, prestamo.FechaPrestamo, 

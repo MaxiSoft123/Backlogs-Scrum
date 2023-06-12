@@ -1,3 +1,11 @@
+    
+    
+<?php
+include("../Modelo/conexion.php");
+session_start();
+$id_usuario = $_SESSION["id"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,10 +13,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista agendamiento Empleado</title>
+    <title>Lista agendamiento Administrador</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-</head>
-
+</head> 
 <div class="ContenedorListar">
         <div class="NombreTabla">
         <h1>Trabajo Pendiente</h1>
@@ -16,10 +23,11 @@
         </div>
         <main class="table">
         <section class="TableBody">       
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
-                <th>Nombre del <br> cliente</th>
+                <th>Nombre del <br> Empleado</th>
+                <th>Nombre del <br> Cliente</th>
                 <th>Tipo de Servicio</th>
                 <th>Lugar del Servicio</th>
                 <th>Telefono</th>
@@ -27,21 +35,37 @@
                 <th>Insumos</th>
                 <th>Cantidad</th>
                 <th>Estado</th>
+                <th>Modificar</th>
+                <th>Descartar</th>
+
+
                 </tr>
                 </thead>
-                <tbody>
+                    <tbody>
 
-                </tbody>
-               
+                    </tbody>
             </table>
             </section>
     </main>
     </div>
 
+    <dialog id="modal">
+        <div class="modal-body">
 
+        </div>
+        <br><br>
+        <div class="Boton">
+            <button class="BotonVerde" onclick="modificarAgendamiento()">Aceptar</button>
+            <button class="BotonRojo" onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </dialog>
+<script src="js/main.js"></script>
 
+<script src="js/jquery-3.3.1.min.js"></script>
 <script>
 	$(document).ready(function() {
-		ListarAgendamiento();
+		listarAgendamientoAdministrador();
 	});
 </script>
+
+

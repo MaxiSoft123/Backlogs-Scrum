@@ -17,9 +17,6 @@ switch ($_POST['metodo']) {
 
 function ListarAgendamientoAdministrador()
 {
-    session_start();
-
-
     $conexion = new PDODB();
 
     $conexion-> Conectar();
@@ -44,9 +41,9 @@ function ListarAgendamientoAdministrador()
         foreach ($resultado3 as $fila3) {    
             
         }
-        $color = "Estado Activo";
+        $Color = "Estado Activo";
         if($fila['Estado']=="Pendiente"){
-            $color="Estado Inactivo";
+            $Color="Estado Inactivo";
         }
       
         echo'
@@ -59,7 +56,7 @@ function ListarAgendamientoAdministrador()
         <td >',$fila['FechaServicio'] ,'| ',$fila['HoraAgendamiento'],'  </td>
         <td >',$fila3['Nombre'],'</td>
         <td >',$fila3['Cantidad'],'</td>
-        <td >',$fila['Estado'],'</td>
+        <td >	<button class="',$Color,'">',$fila['Estado'],'</td></button>
         <td> <a href="#"><img onclick="ModalAgendamiento(' . $fila['IdAgendamiento'] . ')" src="assets/Iconos/editar.svg" alt="" class="IconoTabla"> </a> </td>
         <td> <a href="#"><img onclick="CambiarEstado(' . $fila['IdAgendamiento'] . ')" src="assets/Iconos/desactivar.svg" alt="" class="IconoTabla"> </a> </td>
         </tr>

@@ -21,7 +21,7 @@ switch ($_POST['metodo']) {
 
 function GuardarServicio()
 {
-    session_start();
+
     $Nombre = $_POST["Nombre"];
     $Estado = "Activado";
   
@@ -46,7 +46,7 @@ function GuardarServicio()
 
 function ListarServicios()
 {
-    session_start();
+    
 
 
     $conexion = new PDODB();
@@ -137,7 +137,7 @@ function ModalListar()
 
 function ModificarListar()
 {
-    session_start();
+
     $IdServicio = $_POST["IdServicio"];
     $Nombre = $_POST["Nombre"];
     $Estado = "Activado";
