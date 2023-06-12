@@ -40,10 +40,6 @@ function GuardarAgendamiento()
     $InstruccionSQL = "INSERT INTO agendamiento
         VALUES
         (null,'" .$IdEmpleado . "','" . $IdServicio. "','" . $NombreCliente. "','" .$Descripcion. "','" .$FechaServicio."','" .$HoraAgendamiento. "','" .$DireccionCliente. "', '" .$TelefonoCliente. "','" .$Cantidad. "','" .$Estado. "','".$IdHerramientaInsumo."')";
-
-echo $InstruccionSQL;
-    $resultado = $conexion->EjecutarInstruccion($InstruccionSQL);
-
     if ($resultado == true) {
         echo "Se ha podido guardar";
         
