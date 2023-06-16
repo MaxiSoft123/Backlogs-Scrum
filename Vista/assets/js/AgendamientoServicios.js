@@ -14,7 +14,7 @@ function GuardarAgendamiento() {
             'Cantidad': $('#CantidadInsumo').val(),
             'Descripcion': $('#Descripcion').val(),
             'DireccionCliente': $('#Direccion').val(),
-            'metodo': 'a'
+            'metodo': 'GuardarAgendamiento'
         },
         success: function (data) {
             alert(data);
@@ -35,9 +35,9 @@ function ListarAgendamiento() {
 
     $.ajax({
         type: "POST",
-        url: "../Controlador/ListarAgendamientoEmpleado.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "e"
+            'metodo': "ListarAgendamiento"
         },
         datatype: "html",
         success: function (data) {
@@ -50,10 +50,10 @@ function ListarAgendamiento() {
 function GuardarServicio() {
     $.ajax({
         type: "POST",
-        url: "../Controlador/ListarServicios.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
             'Nombre': $('#NombredelServicio').val(),
-            'metodo': 'a'
+            'metodo': 'GuardarServicio'
         },
         success: function (data) {
             alert(data);
@@ -67,9 +67,9 @@ function ListarAgendamientoAdministrador() {
 
     $.ajax({
         type: "POST",
-        url: "../Controlador/ListarAgendamientoAdministrador.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "e"
+            'metodo': "ListarAgendamientoAdministrador"
         },
         datatype: "html",
         success: function (data) {
@@ -83,9 +83,9 @@ function ListarServicios() {
 
     $.ajax({
         type: "POST",
-        url: "../Controlador/ListarServicios.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "e"
+            'metodo': "ListarServicios"
         },
         datatype: "html",
         success: function (data) {
@@ -99,10 +99,10 @@ function ListarServicios() {
 function CambiarEstado(IdAgendamiento) {
     $.ajax({
         type: "POST",
-        url: "../Controlador/ListarAgendamientoAdministrador.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
             'id_agendamiento': IdAgendamiento,
-            'metodo': "i"
+            'metodo': "CambiarEstado"
         },
         success: function (data) {
             alert(data);
@@ -117,7 +117,7 @@ function  SelectAgendamiento(){
         type: "POST",
         url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "i"
+            'metodo': "SelectAgendamiento"
         },
         datatype: "html",
         success: function (data) {
@@ -130,10 +130,10 @@ function  SelectAgendamiento(){
 function DesactivarServicio(IdServicio) {
     $.ajax({
         type: "POST",
-        url: "../Controlador/ListarServicios.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
             'IdServicio': IdServicio,
-            'metodo': "i"
+            'metodo': "DesactivarServicio"
         },
         success: function (data) {
             alert(data);
@@ -149,7 +149,7 @@ function SelectServicio() {
         type: 'POST',
         url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "o"
+            'metodo': "SelectServicio"
         },
         success: function (data) {
             $('#Servicio').text("");
@@ -163,7 +163,7 @@ function SelectEmpleado() {
         type: 'POST',
         url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "u"
+            'metodo': "SelectEmpleado"
         },
         success: function (data) {
             $('#Empleado').text("");
@@ -176,7 +176,7 @@ function SelectInsumo() {
         type: 'POST',
         url: "../Controlador/AgendarServicio.php",
         data: {
-            'metodo': "i"
+            'metodo': "SelectInsumo"
         },
         success: function (data) {
             $('#Insumos').text("");
@@ -190,10 +190,10 @@ function ModalAgendamiento(id_agendamiento) {
     window.modal.showModal();
     $.ajax({
         type: 'POST',
-        url: "../Controlador/ListarAgendamientoAdministrador.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
             'id_agendamiento': id_agendamiento,
-            'metodo': "o"
+            'metodo': "ModalAgendamiento"
         },
         success: function (data) {
             $('.modal-body').text("");
@@ -208,10 +208,10 @@ function ModalListar(IdServicio) {
     window.modal.showModal();
     $.ajax({
         type: 'POST',
-        url: "../Controlador/ListarServicios.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
             'IdServicio': IdServicio,
-            'metodo': "o"
+            'metodo': "ModalListar"
         },
         success: function (data) {
             $('.modal-body').text("");
@@ -228,7 +228,7 @@ function ModificarListar() {
         data: {
             'IdServicio': $('#Servicio').val(),
             'Nombre': $('#NombreServicio').val(),
-            'metodo': 'u'
+            'metodo': 'ModificarListar'
         },
         success: function (data) {
             alert(data);
@@ -247,7 +247,7 @@ function ModificarListar() {
 function ModificarAgendamiento() {
     $.ajax({
         type: 'POST',
-        url: "../Controlador/ListarAgendamientoAdministrador.php",
+        url: "../Controlador/AgendarServicio.php",
         data: {
             'IdAgendamiento': $('#Agendamiento').val(),
             'NombreCliente': $('#NombreCliente').val(),
@@ -260,7 +260,7 @@ function ModificarAgendamiento() {
             'Cantidad': $('#CantidadInsumo').val(),
             'Descripcion': $('#Descripcion').val(),
             'DireccionCliente': $('#Direccion').val(),
-            'metodo': 'u'
+            'metodo': 'ModificarAgendamiento'
         },
         success: function (data) {
             alert(data);
