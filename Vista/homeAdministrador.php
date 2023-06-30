@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
+if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1 && $_SESSION['Permiso'] == 1) {
 ?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -32,18 +32,19 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 					<ul class="menu">
 						<img src="Assets/Img/MaxiwifiLogo.png" alt="logo" class="logo">
 						<li class="menu-item">
-							<a href="#"><?php echo $_SESSION["Nombre"] . "<br>" . $_SESSION["NombreRol"]; ?></a>
+							<a href="#"><?php echo $_SESSION["Nombre"] . "<br>" . $_SESSION["NombrePermiso"]; ?></a>
 						</li>
 						<li class="menu-item">
-							<a href="home.php"><img src="Assets/Iconos/home.svg" alt="" class="IconoBarraLateral">Home</a>
+							<a href="homeAdministrador.php"><img src="Assets/Iconos/home.svg" alt="" class="IconoBarraLateral">Home</a>
 						</li>
 						<?php if ($_SESSION['Permisos'][0] == 1) {
 						?>
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/roles.svg" alt="" class="IconoBarraLateral">Roles</a>
 								<ul class="submenu">
-									<li><a href="#" onclick='Metodo("ListarRoles.php")'>Listar roles</a></li>
-									<li><a href="#" onclick='Metodo("AñadirRoles.php")'>Añadir roles</a></li>
+									<!-- <li><a href="#" onclick='Metodo("bobada.php")'>Bobada</a></li> -->
+									<li><a href="#" onclick='Metodo("Particiones/ListarRoles.php")'>Listar roles</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/AñadirRoles.php")'>Añadir roles</a></li>
 								</ul>
 							</li>
 						<?php
@@ -53,8 +54,8 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/empleados.svg" alt="" class="IconoBarraLateral">Empleados</a>
 								<ul class="submenu">
-									<li><a href="#" onclick='Metodo("ListarUsuarioEmpleado.php")'>Listar Empleados</a></li>
-									<li><a href="#" onclick='Metodo("AñadirUsuarioEmpleado.php")'>Añadir Empleados</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/ListarUsuario.php")'>Listar Empleados</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/AñadirUsuario.php")'>Añadir Empleados</a></li>
 								</ul>
 							</li>
 						<?php
@@ -64,8 +65,9 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/novedades.svg" alt="" class="IconoBarraLateral">Novedades</a>
 								<ul class="submenu">
-									<li><a href="#">Listar Novedades</a></li>
-									<li><a href="#">Añadir Novedades</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/NovedadesEmpleados.php")'>Listar novedades en espera</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/MisNovedades.php")'>Mis novedades</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/AñadirNovedad.php")'>Añadir Novedad</a></li>
 								</ul>
 							</li>
 						<?php
@@ -75,8 +77,8 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/herramientas e insumos.svg" alt="" class="IconoBarraLateral">Herramientas e insumos</a>
 								<ul class="submenu">
-									<li><a onclick='Metodo("MasterHerramientas.php")' href="#">Listar Herramientas e insumos</a></li>
-									<li><a onclick='Metodo("RegistrarHerramientas.php")' href="#">Añadir Herramientas e insumos</a></li>
+									<li><a onclick='Metodo("Particiones/MasterHerramientas.php")' href="#">Listar Herramientas e insumos</a></li>
+									<li><a onclick='Metodo("Particiones/RegistrarHerramientas.php")' href="#">Añadir Herramientas e insumos</a></li>
 								</ul>
 							</li>
 						<?php
@@ -86,9 +88,9 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/prestamos.svg" alt="" class="IconoBarraLateral">Préstamos</a>
 								<ul class="submenu">
-									<li><a onclick='Metodo("ListarPrestamoAdmin.php")' href="#">Listar Préstamos</a></li>
-									<li><a onclick='Metodo("ListarPrestamoEmpleado.php")' href="#">Listar Préstamos Empleado</a></li>
-									<li><a onclick='Metodo("RealizarPrestamo.php")' href="#">Añadir Préstamos</a></li>
+									<li><a onclick='Metodo("Particiones/ListarPrestamoAdmin.php")' href="#">Listar Préstamos</a></li>
+									<li><a onclick='Metodo("Particiones/ListarPrestamoEmpleado.php")' href="#">Listar Préstamos Empleado</a></li>
+									<li><a onclick='Metodo("Particiones/RealizarPrestamo.php")' href="#">Añadir Préstamos</a></li>
 								</ul>
 							</li>
 						<?php
@@ -98,8 +100,8 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/servicios.svg" alt="" class="IconoBarraLateral">Servicios</a>
 								<ul class="submenu">
-									<li><a onclick='Metodo("ListarServicios.php")' href="#">Listar Servicios</a></li>
-									<li><a onclick='Metodo("CrearServicios.php")' href="#">Añadir Servicios</a></li>
+									<li><a onclick='Metodo("Particiones/ListarServicios.php")' href="#">Listar Servicios</a></li>
+									<li><a onclick='Metodo("Particiones/CrearServicios.php")' href="#">Añadir Servicios</a></li>
 								</ul>
 							</li>
 						<?php
@@ -109,9 +111,9 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 							<li class="menu-item has-submenu">
 								<a href="#"><img src="Assets/Iconos/agendamiento.svg" alt="" class="IconoBarraLateral">Agendamiento</a>
 								<ul class="submenu">
-									<li><a href="#" onclick='Metodo("ListarAgendamientoEmpleado.php")'>Listar Agendamiento</a></li>
-									<li><a href="#" onclick='Metodo("ListarAgendamientoAdmin.php")'>Listar Agendamiento Administrador</a></li>
-									<li><a href="#" onclick='Metodo("AgendarServicio.php")'>Añadir Agendamiento</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/ListarAgendamientoEmpleado.php")'>Listar Agendamiento</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/ListarAgendamientoAdmin.php")'>Listar Agendamiento Administrador</a></li>
+									<li><a href="#" onclick='Metodo("Particiones/AgendarServicio.php")'>Añadir Agendamiento</a></li>
 								</ul>
 							</li>
 						<?php
@@ -153,11 +155,12 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 	<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/Main.js"></script>
 	<script src="assets/js/HerramientaInsumo.js"></script>
-	<script src="assets/js/Agendamiento.js"></script>
 	<script src="assets/js/Servicio.js"></script>
+	<script src="assets/js/Agendamiento.js"></script>
 	<script src="assets/js/Roles.js"></script>
-	<script src="assets/js/UsuarioEmpleado.js"></script>
+	<script src="assets/js/Usuario.js"></script>
 	<script src="assets/js/Prestamo.js"></script>
+	<script src="assets/js/Novedad.js"></script>
 	</body>
 
 	</html>
@@ -167,6 +170,10 @@ if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Estado'] == 1) {
 	echo '<p>No estas autorizado para usar el software</p>
 	<h6>Comunicate con el adminisrador para dar solución</h6><br>
 	<a href="login.php" class="nav__link">Inisiar Sesion</a>';
+} else if (isset($_SESSION['sesion_iniciada']) == true && $_SESSION['Permiso'] == 0) {
+	echo '<p>No estas autorizado para Estar acá</p>
+	<h6>Comunicate con el adminisrador para dar solución</h6><br>
+	<a href="../Controlador/cerrarsesion.php" class="nav__link">Inisiar Sesion</a>';
 } else {
 	echo 'No as iniciado session <br>
 	<a href="login.php" class="nav__link">Inisiar Sesion</a>';

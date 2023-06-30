@@ -1,92 +1,190 @@
 <?php
 require_once '../Modelo/Conexion.php';
 switch ($_POST['Metodo']) {
-    // Inicio Realizar Prestamo 
-        case 'a':
-            ListarRealizarP();
+        // Inicio Realizar Prestamo 
+    case 'ListarRealizarP':
+        ListarRealizarP();
+        break;
+    case 'Prestar':
+        Prestar();
+        break;
+    case 'ListarNombresEmpleado':
+        ListarNombresEmpleado();
+        break;
+    case 'ListarNombresHerramienta':
+        ListarNombresHerramienta();
+        break;
+    case 'ListarPrestamoAdmin':
+        ListarPrestamoAdmin();
+        break;
+    case 'ListarPrestamoDañado':
+        ListarPrestamoDañado();
+        break;
+    case 'DevolverHerramienta':
+        DevolverHerramienta();
+        break;
+    case 'ModalModificarPrestamo':
+        ModalModificarPrestamo();
+        break;
+    case 'ModificarPrestamo':
+        ModificarPrestamo();
+        break;
+    case 'ModalDevolverHerramienta':
+        ModalDevolverHerramienta();
+        break;
+    case 'DevolverHerramienta':
+        DevolverHerramienta();
+        break;
+    case 'DevolverDañada':
+        DevolverDañada();
+        break;
+    case 'ListarPrestamoEmpleado':
+        ListarPrestamoEmpleado();
+        break;
+    case 'EliminarInsumo':
+        EliminarInsumo();
+        break;
+    case 'ListarDanadaEmpleado':
+        ListarDanadaEmpleado();
+        break;
+    case 'CambiarAdmin':
+        CambiarAdmin();
+        break;
+        case 'CambiarEmpleado':
+            CambiarEmpleado();
             break;
-            case 'r':
-                Prestar();
+            case 'ListarNombresEmpleadoPrestados':
+                ListarNombresEmpleadoPrestados();
                 break;
-                case 'D':
-                    ListarNombresEmpleado();
-                    break;
-                    case 'd':
-                        ListarNombresHerramienta();
-                        break;
-                        case 'l':
-                            ListarPrestamoAdmin();
-                            break;
-                            case 'L':
-                                ListarPrestamoDañado();
-                                break;
-                                case 'x':
-                                    DevolverHerramienta();
-                                    break;
-                                    case 'k':
-                                        ModalModificarPrestamo();
-                                        break;
-                                        case 'K':
-                                            ModificarPrestamo();
-                                            break;
-                                            case 'z':
-                                                ModalDevolverHerramienta();
-                                                break;
-                                                case 'Z':
-                                                    DevolverHerramienta();
-                                                    break;
-                                                    case 'V':
-                                                        DevolverDañada();
-                                                        break;
-                                                        case 'ñ':
-                                                            ListarPrestamoEmpleado();
-                                                            break;
-                                                            case 'Ñ':
-                                                                EliminarInsumo();
-                                                                break;
-                                                                
-    // Fin Realizar Prestamo
+
+        // Fin Realizar Prestamo
 }
-    // Inicio Realizar Prestamo 
-function ListarRealizarP(){
+// Inicio Realizar Prestamo 
+function ListarRealizarP()
+{
 
     $Tipo = $_POST['Tipo'];
     $Conexion = new PDODB();
 
     $Conexion->Conectar();
-    if ($Tipo != "No"){
-    $Nombre = $_POST['Nombre'];
+    if ($Tipo != "No") {
+        $Nombre = $_POST['Nombre'];
 
-    $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE Cantidad > 0 AND Nombre='" . $Nombre . "' AND Tipo='" . $Tipo . "'";
-}
-else{
-    $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE cantidad > 0";
-}
+        $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE Cantidad > 0 AND Nombre='" . $Nombre . "' AND Tipo='" . $Tipo . "' AND Estado = 1";
+    } else {
+        $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE Cantidad > 0 AND Estado = 1";
+    }
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-    
-    foreach ($Resultado as $key => $Value) {
-    echo '<tr>
-        <td class="pt-3-half" contenteditable="false"><input id="Nombre'.$Value['IdHerramientaInsumo'].'" type="hidden" value="'.$Value['Nombre'].'">' . $Value['Nombre'] . '</td>
-        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="'.$Value['Tipo'].'">' . $Value['Tipo'] . '</td>
-        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="'.$Value['Categoria'].'">' . $Value['Categoria'] . '</td>
-        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="'.$Value['Descripcion'].'">' . $Value['Descripcion'] . '</td>
-        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="'.$Value['Color'].'">' . $Value['Color'] . '</td>
-        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="'.$Value['Medida'].'">' . $Value['Medida'] . '</td>
 
-        <input type="hidden" id="cantidadd'.$Value['IdHerramientaInsumo'].'" value="'.$Value['Cantidad'].'">
-        <td class="pt-3-half" contenteditable="false"><input class="cantidadAsignar" onclick="Validacion('.$Value['IdHerramientaInsumo'].')"  onkeyup="Validacion('.$Value['IdHerramientaInsumo'].')" id="cantidad'.$Value['IdHerramientaInsumo'].'" type="number" value="'.$Value['Cantidad'].'"></td>
-        <td><img src="../Vista/Assets/Iconos/agregar.svg" alt="" id="boton'.$Value['IdHerramientaInsumo'].'"  class="amarillo" onclick="Asignar(' . $Value['IdHerramientaInsumo'] . ')"></td>
+    foreach ($Resultado as $key => $Value) {
+        echo '<tr>
+        <td class="pt-3-half" contenteditable="false"><input id="Nombre' . $Value['IdHerramientaInsumo'] . '" type="hidden" value="' . $Value['Nombre'] . '">' . $Value['Nombre'] . '</td>
+        <td class="pt-3-half" contenteditable="false"><input type="hidden" id="Tipo' . $Value['IdHerramientaInsumo'] . '" value="' . $Value['Tipo'] . '">' . $Value['Tipo'] . '</td>
+        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="' . $Value['Categoria'] . '">' . $Value['Categoria'] . '</td>
+        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="' . $Value['Descripcion'] . '">' . $Value['Descripcion'] . '</td>
+        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="' . $Value['Color'] . '">' . $Value['Color'] . '</td>
+        <td class="pt-3-half" contenteditable="false"><input type="hidden" value="' . $Value['Medida'] . '">' . $Value['Medida'] . '</td>
+
+        <input type="hidden" id="cantidadd' . $Value['IdHerramientaInsumo'] . '" value="' . $Value['Cantidad'] . '">
+        <td class="pt-3-half" contenteditable="false"><input class="cantidadAsignar" onclick="Validacion(' . $Value['IdHerramientaInsumo'] . ')"  onkeyup="Validacion(' . $Value['IdHerramientaInsumo'] . ')" id="cantidad' . $Value['IdHerramientaInsumo'] . '" type="number" value="' . $Value['Cantidad'] . '"></td>
+        <td><img src="../Vista/Assets/Iconos/agregar.svg" alt="" id="boton' . $Value['IdHerramientaInsumo'] . '"  class="amarillo" onclick="Asignar(' . $Value['IdHerramientaInsumo'] . ')"></td>
     </tr>';
-    if ($Tipo != "No"){
-        echo'<script>          
-            CambiarImagen('.$Value['IdHerramientaInsumo'].');
+        if ($Tipo != "No") {
+            echo '<script>          
+            CambiarImagen(' . $Value['IdHerramientaInsumo'] . ');
     </script>';
+        }
     }
-    }
-    
 }
 
-function Prestar(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function GuardarDetallePrestamo($Cantidad, $Ides, $IdPrestamo, $Conexion)
+{
+    //validar si ya se ha prestado
+    for ($i = 0; $i < count($Ides); $i++) {
+        $Valida = 0;
+        $Cosa = 0;
+        $Cosa2 = 0;
+        $sql = "SELECT * FROM detalleprestamo 
+        INNER JOIN herramientainsumo USING(IdHerramientaInsumo)
+        WHERE IdHerramientaInsumo = " . $Ides[$i] . " AND IdPrestamo = " . $IdPrestamo;
+
+        $resul = $Conexion->ObtenerDatos($sql);
+
+        foreach ($resul as $key => $Value) {
+            $Valida = 1;
+            $NombreHerramienta = $Value['Nombre'];
+        }
+        if ($Valida > 0) {
+            if ($Cosa == 0) {
+                echo "Ya le has prestado al empleado la herramienta con el nombre: ";
+                $Cosa++;
+            }
+            echo $NombreHerramienta;
+        }
+        //si no se ha prestado tons se hara
+        else {
+            $Cosa2++;
+            $InstruccionSQL = "INSERT INTO detalleprestamo
+            VALUES
+            (null,'" . $IdPrestamo . "', '" . $Ides[$i] . "','" . $Cantidad[$i] . "')";
+
+            $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+            ActHerramienta($Ides[$i], $Cantidad[$i], "-");
+        }
+    }
+    if ($Cosa2 > 0) {
+        echo "\n Se ha realizado el prestamo";
+    } else {
+        echo "\n No fué posible prestar";
+    }
+}
+function ObtenerIdPrestamo($IdEmpleado, $Conexion)
+{
+    $sql = "SELECT * FROM prestamo
+    WHERE IdUsuario = " . $IdEmpleado;
+    $resul = $Conexion->ObtenerDatos($sql);
+    foreach ($resul as $key => $Value) {
+        return $Value['IdPrestamo'];
+    }
+}
+function Prestar()
+{
     $Ides = $_POST['Ides'];
     $Cantidad = $_POST['Cantidades'];
     $IdEmpleado = $_POST['IdEmpleado'];
@@ -97,92 +195,98 @@ function Prestar(){
     $Conexion = new PDODB();
 
     $Conexion->Conectar();
- 
-for ($i=0; $i < count($Ides); $i++) { 
 
-    $Valida = 0;
-
-    $Cosa = 0;
-    $Cosa2 = 0;
-    $sql = "SELECT * FROM prestamo 
-    INNER JOIN herramientainsumo USING(IdHerramientaInsumo)
-    WHERE IdHerramientaInsumo = " . $Ides[$i] . " AND IdEmpleado = " . $IdEmpleado;
+    $sql = "SELECT * FROM prestamo
+    WHERE IdUsuario = " . $IdEmpleado;
 
     $resul = $Conexion->ObtenerDatos($sql);
-
+    $Valida = 0;
     foreach ($resul as $key => $Value) {
         $Valida = 1;
-        $NombreHerramienta = $Value['Nombre'];
     }
-    if ($Valida > 0) {
-        if ($Cosa == 0){
-        echo "Ya le has prestado al empleado la herramienta con el nombre: ";
-    $Cosa++;    
-    }
-        echo $NombreHerramienta;
-    } else {
-        $Cosa2++;
-    $InstruccionSQL = "INSERT INTO prestamo
+    if ($Valida == 0) {
+        $InstruccionSQL = "INSERT INTO prestamo
         VALUES
-        (null,'" . $IdEmpleado . "', '" . $Ides[$i] . "','" . $FechaActual . "','" . $Cantidad[$i] . "')";
-
-    $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
-    ActHerramienta($Ides[$i], $Cantidad[$i], "-");
-}} 
-
-    if ($Cosa2 > 0) {
-        echo "\n Se han prestado las herramientas";
-    }else {
-            echo "\n No fué posible prestar";
-        }
-   
+        (null,'" . $IdEmpleado . "','" . $FechaActual . "')";
+        $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
     }
+    GuardarDetallePrestamo($Cantidad, $Ides, ObtenerIdPrestamo($IdEmpleado, $Conexion), $Conexion);
+}
 
-function ActHerramienta($Id, $Cantidad, $Operacion){
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function ActHerramienta($Id, $Cantidad, $Operacion)
+{
+
     $Conexion = new PDODB();
 
     $Conexion->Conectar();
 
-    $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE IdHerramientaInsumo= '" .$Id."'";
+    $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE IdHerramientaInsumo= '" . $Id . "'";
 
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
 
     foreach ($Resultado as $key => $Value) {
         $CantidadHerramienta = $Value['Cantidad'];
     }
-if($Operacion == "-"){
-$Resultado = $CantidadHerramienta - $Cantidad;
-}
-else{
-$Resultado = $CantidadHerramienta + $Cantidad;
-}
-$InstruccionSQL = "UPDATE herramientainsumo  
+    if ($Operacion == "-") {
+        $Resultado = $CantidadHerramienta - $Cantidad;
+    } else {
+        $Resultado = $CantidadHerramienta + $Cantidad;
+    }
+    $InstruccionSQL = "UPDATE herramientainsumo  
 SET
 Cantidad = " . $Resultado . "
-WHERE IdHerramientaInsumo = '" .$Id."'";
+WHERE IdHerramientaInsumo = '" . $Id . "'";
 
     $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
-
-}    
-function ListarNombresEmpleado(){
+}
+function ListarNombresEmpleado()
+{
     $Conexion = new PDODB();
 
-                $Conexion->Conectar();
-                $InstruccionSQL = "SELECT * FROM empleado";
+    $Conexion->Conectar();
+    $InstruccionSQL = "SELECT * FROM usuario";
 
-                $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
 
 
-                foreach ($Resultado as $key => $Value) {
-                    echo '<option value="' . $Value["IdEmpleado"] . '">' . $Value["Nombre"] . '</option>';
-                }
+    foreach ($Resultado as $key => $Value) {
+        echo '<option value="' . $Value["IdUsuario"] . '">' . $Value["Nombre"] . '</option>';
+    }
 }
-function ListarNombresHerramienta(){
-    $Tipo = $_POST['Tipo']; 
+function ListarNombresHerramienta()
+{
+    $Tipo = $_POST['Tipo'];
     $Conexion = new PDODB();
     $Conexion->Conectar();
-    $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE Cantidad > 0 AND Tipo = '".$Tipo."'";
+    $InstruccionSQL = "SELECT * FROM herramientainsumo WHERE Cantidad > 0 AND Tipo = '" . $Tipo . "'";
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
 
     foreach ($Resultado as $key => $Value) {
@@ -193,111 +297,149 @@ function ListarNombresHerramienta(){
 
 //Lista admin
 
-function ListarPrestamoAdmin(){
+function ListarPrestamoAdmin()
+{
     $NombreEmpleado = $_POST['NombreEmpleado'];
     $Conexion = new PDODB();
     $Conexion->Conectar();
 
 
-    if ($NombreEmpleado != -999){
-    $InstruccionSQL = "SELECT prestamo.IdEmpleado, prestamo.IdPrestamo, herramientainsumo.Tipo, prestamo.FechaPrestamo,
-     prestamo.Cantidad AS CantidadPrestamo, empleado.Nombre AS NombreEmpleado, herramientainsumo.Nombre
-      AS NombreHerramienta FROM prestamo INNER JOIN herramientansumo ON 
-      prestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo INNER JOIN 
-      empleado ON prestamo.IdEmpleado=empleado.IdEmpleado WHERE prestamo.IdEmpleado=" . $NombreEmpleado;
-}
-else{
-    $InstruccionSQL = "SELECT prestamo.IdPrestamo, prestamo.FechaPrestamo, herramientainsumo.Tipo, prestamo.Cantidad AS
-     CantidadPrestamo, empleado.Nombre AS NombreEmpleado, herramientainsumo.Nombre AS 
-     NombreHerramienta FROM prestamo INNER JOIN herramientainsumo ON 
-     prestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
-     INNER JOIN empleado ON prestamo.IdEmpleado=empleado.IdEmpleado";
-}
+    if ($NombreEmpleado != -999) {
+        $InstruccionSQL = "SELECT detalleprestamo.IdPrestamo, detalleprestamo.IdDetallePrestamo, prestamo.FechaPrestamo, herramientainsumo.Tipo, detalleprestamo.CantidadElemento AS
+    CantidadPrestamo, usuario.Nombre AS NombreEmpleado, herramientainsumo.Nombre AS 
+    NombreHerramienta FROM detalleprestamo INNER JOIN herramientainsumo ON 
+    detalleprestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
+    INNER JOIN prestamo ON 
+     detalleprestamo.IdPrestamo=prestamo.IdPrestamo
+     INNER JOIN usuario ON prestamo.IdUsuario=usuario.IdUsuario WHERE prestamo.IdUsuario=" . $NombreEmpleado;
+    } else {
+        $InstruccionSQL = "SELECT detalleprestamo.IdPrestamo, detalleprestamo.IdDetallePrestamo, prestamo.FechaPrestamo, herramientainsumo.Tipo, detalleprestamo.CantidadElemento AS
+     CantidadPrestamo, usuario.Nombre AS NombreEmpleado, herramientainsumo.Nombre AS 
+     NombreHerramienta FROM detalleprestamo INNER JOIN herramientainsumo ON 
+     detalleprestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
+     INNER JOIN prestamo ON 
+      detalleprestamo.IdPrestamo=prestamo.IdPrestamo
+      INNER JOIN usuario ON prestamo.IdUsuario=usuario.IdUsuario";
+    }
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-    
+
     foreach ($Resultado as $key => $Value) {
-    echo '<tr>
-        <td class="pt-3-half" contenteditable="false">'.$Value['IdPrestamo'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['NombreEmpleado'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['NombreHerramienta'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['Tipo'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['FechaPrestamo'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['CantidadPrestamo'].'</td>
+        echo '<tr>
+        <td class="pt-3-half" contenteditable="false">' . $Value['IdPrestamo'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['IdDetallePrestamo'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['NombreEmpleado'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['NombreHerramienta'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['Tipo'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['FechaPrestamo'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['CantidadPrestamo'] . '</td>
         <td>
-        <img src="..\Vista\Assets\Iconos\desactivar.svg" class="IconoTabla"  onclick="ModalDevolverHerramienta(' . $Value['IdPrestamo'] . ')" >
-        <img src="..\Vista\Assets\Iconos\editar.svg" class="IconoTabla" onclick="ModalModificarPrestamo(' . $Value['IdPrestamo'] . ')" ></td>
+        <img src="..\Vista\Assets\Iconos\devolver.svg" class="IconoTabla"  onclick="ModalDevolverHerramienta(' . $Value['IdDetallePrestamo'] . ')" >
+        &nbsp; &nbsp;
+        <img src="..\Vista\Assets\Iconos\editar.svg" class="IconoTabla" onclick="ModalModificarPrestamo(' . $Value['IdDetallePrestamo'] . ')" ></td>
         </tr>';
     }
 }
 
-function EliminarInsumo(){
-    $IdPrestamo = $_POST['IdPrestamo'];
-    
+function ListarNombresEmpleadoPrestados()
+{
     $Conexion = new PDODB();
 
     $Conexion->Conectar();
-    $InstruccionSQL = "DELETE FROM prestamo WHERE IdPrestamo = ".$IdPrestamo;
+    $InstruccionSQL = "SELECT * FROM prestamo INNER JOIN usuario USING(IdUsuario) WHERE IdUsuario = IdUsuario";
+
+    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+
+
+    foreach ($Resultado as $key => $Value) {
+        echo '<option value="' . $Value["IdUsuario"] . '">' . $Value["Nombre"] . '</option>';
+    }
+}
+
+function EliminarInsumo()
+{
+    $IdDetallePrestamo = $_POST['IdDetallePrestamo'];
+
+    $Conexion = new PDODB();
+
+    $Conexion->Conectar();
+
+    $InstruccionSQL = "SELECT * FROM detalleprestamo WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
+    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+    foreach ($Resultado as $key => $Value) {
+        $IdPrestamo = $Value['IdPrestamo'];
+    }
+
+    $InstruccionSQL = "DELETE FROM detalleprestamo WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
     $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+
+
+    CasoEliminarPrestamo($IdPrestamo, $Conexion);
+
+
     if ($Resultado == true) {
-        echo "tales de tales";
+        echo "Se han usado los insumos";
     } else {
         echo "No fué posible";
     }
 }
 
-function ListarPrestamoDañado(){
+function ListarPrestamoDañado()
+{
     $Conexion = new PDODB();
     $Conexion->Conectar();
 
-    $InstruccionSQL = "SELECT * FROM detalleprestamo INNER JOIN herramientainsumo ON detalleprestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo";
+    $InstruccionSQL = "SELECT herramientadanada.IdHerramientaDanada, herramientadanada.CantidadElemento, herramientadanada.Observacion, herramientainsumo.Nombre AS NombreHerramienta, usuario.Nombre AS NombreEmpleado  FROM herramientadanada INNER JOIN herramientainsumo USING(IdHerramientaInsumo) INNER JOIN usuario USING(IdUsuario)";
 
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-    
+
     foreach ($Resultado as $key => $Value) {
-    echo '<tr>
-    <td class="pt-3-half" contenteditable="false">'.$Value['IdDetallePrestamo'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['Nombre'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['CantidadElemento'].'</td>
-        <td class="pt-3-half" contenteditable="false">'.$Value['Observacion'].'</td>
-        <td><input type="button" value="Arreglado" class="Estado Activo" onclick="DevolverDañada(' . $Value['IdDetallePrestamo'] . ')">
+        echo '<tr>
+    <td class="pt-3-half" contenteditable="false">' . $Value['IdHerramientaDanada'] . '</td>
+    <td class="pt-3-half" contenteditable="false">' . $Value['NombreEmpleado'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['NombreHerramienta'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['CantidadElemento'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['Observacion'] . '</td>
+        <td><input type="button" value="Arreglado" class="Estado Activo" onclick="DevolverDañada(' . $Value['IdHerramientaDanada'] . ')">
 </td>
         </tr>';
     }
 }
-function DevolverHerramienta(){
-    $IdPrestamo = $_POST['IdPrestamo'];
+function DevolverHerramienta()
+{
+    $IdDetallePrestamo = $_POST['IdDetallePrestamo'];
     $Select = $_POST['Select'];
     $CantidadDañado = $_POST['CantidadDañado'];
-        $Observacion = $_POST['Observacion'];
+    $Observacion = $_POST['Observacion'];
 
     $Conexion = new PDODB();
 
     $Conexion->Conectar();
 
-if ($Select == "no"){
-    $InstruccionSQL = "SELECT * FROM prestamo WHERE IdPrestamo = ".$IdPrestamo;
-    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-    foreach ($Resultado as $key => $Value) {
-        ActHerramienta($Value['IdHerramientaInsumo'], $Value['Cantidad'], "+");
-    }
-    $InstruccionSQL = "DELETE FROM prestamo WHERE IdPrestamo = ".$IdPrestamo;
-    $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
-}
-else{
-    $InstruccionSQL = "SELECT * FROM prestamo WHERE IdPrestamo = ".$IdPrestamo;
-    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-    foreach ($Resultado as $key => $Value) {
-        $Devolver = $Value['Cantidad'] - $CantidadDañado;
-        ActHerramienta($Value['IdHerramientaInsumo'], $Devolver, "+");
-        $InstruccionSQL = "DELETE FROM prestamo WHERE IdPrestamo = ".$IdPrestamo;
-  $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
-        $InstruccionSQL = "INSERT INTO detalleprestamo  
+    if ($Select == "no") {
+        $InstruccionSQL = "SELECT * FROM detalleprestamo WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
+        $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+        foreach ($Resultado as $key => $Value) {
+            ActHerramienta($Value['IdHerramientaInsumo'], $Value['CantidadElemento'], "+");
+            $IdPrestamo = $Value['IdPrestamo'];
+        }
+        $InstruccionSQL = "DELETE FROM detalleprestamo WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
+        $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+    } else {
+        $InstruccionSQL = "SELECT * FROM detalleprestamo INNER JOIN prestamo USING(IdPrestamo) WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
+        $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+        foreach ($Resultado as $key => $Value) {
+            $Devolver = $Value['CantidadElemento'] - $CantidadDañado;
+            ActHerramienta($Value['IdHerramientaInsumo'], $Devolver, "+");
+            $InstruccionSQL = "DELETE FROM detalleprestamo WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
+            $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+            $InstruccionSQL = "INSERT INTO herramientadanada  
         VALUES
-        (null,'" . $Value['IdHerramientaInsumo'] . "', '" . $CantidadDañado . "', '" .$Observacion."')";
-$Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+        (null,'" . $Value['IdHerramientaInsumo'] . "','" . $Value['IdUsuario'] . "', '" . $CantidadDañado . "', '" . $Observacion . "')";
+            $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+            $IdPrestamo = $Value['IdPrestamo'];
+        }
     }
-}
-
+    CasoEliminarPrestamo($IdPrestamo, $Conexion);
     if ($Resultado == true) {
         echo "Se han devuelto las herramientas";
     } else {
@@ -305,26 +447,40 @@ $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
     }
 }
 
+function CasoEliminarPrestamo($IdPrestamo, $Conexion)
+{
+    $InstruccionSQL = "SELECT * FROM detalleprestamo WHERE IdPrestamo = " . $IdPrestamo;
+    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+    $Valida = 0;
+    foreach ($Resultado as $key => $Value) {
+        $Valida = 1;
+    }
+    if ($Valida == 0) {
+        $InstruccionSQL = "DELETE FROM prestamo WHERE IdPrestamo = " . $IdPrestamo;
+        $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
+    }
+}
+
 function ModalModificarPrestamo()
 {
     $Conexion = new PDODB();
     $Conexion->Conectar();
-    $IdPrestamo  = $_POST['IdPrestamo'];
-    $InstruccionSQL = "SELECT prestamo.IdPrestamo, prestamo.Cantidad 
-    AS CantidadPrestamo, herramientainsumo.Cantidad AS CantidadHerramienta FROM prestamo  
+    $IdDetallePrestamo  = $_POST['IdDetallePrestamo'];
+    $InstruccionSQL = "SELECT detalleprestamo.IdDetallePrestamo, detalleprestamo.CantidadElemento 
+    AS CantidadPrestamo, herramientainsumo.Cantidad AS CantidadHerramienta FROM detalleprestamo  
     INNER JOIN herramientainsumo 
-    ON prestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
-    WHERE IdPrestamo = " . $IdPrestamo;
+    ON detalleprestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
+    WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
 
     $Lista = $Conexion->ObtenerDatos($InstruccionSQL);
 
     foreach ($Lista as $key => $Value) {
         $CantidadTotal = $Value['CantidadHerramienta'] + $Value['CantidadPrestamo'];
         echo '
-        <input type="hidden" id="Metodo" value="Modificar">
+        <input type="hidden" id="Metodo2" value="Modificar">
         <h3>Cantidad a modificar</h3>
-<input type="hidden" id="IdPrestamo" value="' . $Value['IdPrestamo'] . '">
-<input onclick="Validacion2()" onkeyup="Validacion2()" id="CantidadPrestamo" type="number" value="'.$Value['CantidadPrestamo'].'">
+<input type="hidden" id="IdDetallePrestamo" value="' . $Value['IdDetallePrestamo'] . '">
+<input onclick="Validacion2()" onkeyup="Validacion2()" id="CantidadPrestamo" type="number" value="' . $Value['CantidadPrestamo'] . '">
 
 <label>Cantidad disponible</label>
 <br>
@@ -336,23 +492,22 @@ function ModalModificarPrestamo()
 
 function ModificarPrestamo()
 {
-    $IdPrestamo = $_POST["IdPrestamo"];
+    $IdDetallePrestamo = $_POST["IdDetallePrestamo"];
     $CantidadPrestamo = $_POST["CantidadPrestamo"];
     $Conexion = new PDODB();
 
     $Conexion->Conectar();
 
-    
-    $InstruccionSQL = "SELECT * FROM prestamo WHERE IdPrestamo = ".$IdPrestamo;
+    $InstruccionSQL = "SELECT * FROM detalleprestamo WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
 
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-    
+
     foreach ($Resultado as $key => $Value) {
-        ActHerramienta($Value['IdHerramientaInsumo'], $Value['Cantidad'], "+");
+        ActHerramienta($Value['IdHerramientaInsumo'], $Value['CantidadElemento'], "+");
     }
 
-    $InstruccionSQL = "UPDATE prestamo SET Cantidad = '" . $CantidadPrestamo . "'
-         WHERE IdPrestamo = " . $IdPrestamo;
+    $InstruccionSQL = "UPDATE detalleprestamo SET CantidadElemento = '" . $CantidadPrestamo . "'
+         WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
 
     $Modificado = $Conexion->EjecutarInstruccion($InstruccionSQL);
 
@@ -372,26 +527,25 @@ function ModalDevolverHerramienta()
 {
     $Conexion = new PDODB();
     $Conexion->Conectar();
-    $IdPrestamo  = $_POST['IdPrestamo'];
-    $InstruccionSQL = "SELECT prestamo.IdPrestamo, herramientainsumo.Tipo, prestamo.Cantidad 
-    AS CantidadPrestamo, herramientainsumo.Cantidad AS CantidadHerramienta FROM prestamo  
+    $IdDetallePrestamo  = $_POST['IdDetallePrestamo'];
+    $InstruccionSQL = "SELECT detalleprestamo.IdDetallePrestamo, herramientainsumo.Tipo, detalleprestamo.CantidadElemento 
+    AS CantidadPrestamo, herramientainsumo.Cantidad AS CantidadHerramienta FROM detalleprestamo  
     INNER JOIN herramientainsumo 
-    ON prestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
-    WHERE IdPrestamo = " . $IdPrestamo;
+    ON detalleprestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
+    WHERE IdDetallePrestamo = " . $IdDetallePrestamo;
 
     $Lista = $Conexion->ObtenerDatos($InstruccionSQL);
 
     foreach ($Lista as $key => $Value) {
-        if($Value['Tipo'] == "insumo" || $Value['Tipo'] == "Insumo"){
+        if ($Value['Tipo'] == "insumo" || $Value['Tipo'] == "Insumo") {
             echo '
-            <input type="hidden" id="Metodo" value="Insumo">
-            <h3>¿Esta seguro?</h3>
-    <input type="hidden" id="IdPrestamo3" value="' . $Value['IdPrestamo'] . '">
+            <input type="hidden" id="Metodo2" value="Insumo">
+            <h3>¿Esta seguro de que utilizo los insumos?</h3>
+    <input type="hidden" id="IdDetallePrestamo3" value="' . $Value['IdDetallePrestamo'] . '">
     ';
-        }
-        else{
-        echo '
-        <input type="hidden" id="Metodo" value="Devolver">
+        } else {
+            echo '
+        <input type="hidden" id="Metodo2" value="Devolver">
         <h3>¿Se ha dañado alguna herramienta?</h3>
         <br>
         <select onclick="Siono()" id="Select" name="Select">
@@ -399,19 +553,21 @@ function ModalDevolverHerramienta()
   <option value="si">Si</option>
  </select>
  <br>
-<input type="hidden" id="IdPrestamo2" value="' . $Value['IdPrestamo'] . '">
-<input id="CantidadBase" disabled type="hidden" value="'.$Value['CantidadPrestamo'].'">
+<input type="hidden" id="IdDetallePrestamo2" value="' . $Value['IdDetallePrestamo'] . '">
+<input id="CantidadBase" disabled type="hidden" value="' . $Value['CantidadPrestamo'] . '">
 <br>
 <label id="Label1" style="display: none;">Ingrese la cantidad de herramientas dañadas</label>
 
-<input onclick="Validacion3()" onkeyup="Validacion3()" id="CantidadDañado" style="display: none;" type="number" value="'.$Value['CantidadPrestamo'].'">
+<input onclick="Validacion3()" onkeyup="Validacion3()" id="CantidadDañado" style="display: none;" type="number" value="' . $Value['CantidadPrestamo'] . '">
 <label id="Label2" style="display: none;">Ingrese el motivo</label>
 <input type="text" id="Observacion" class="input" style="display: none;">
 ';
-    };
-}};
+        };
+    }
+};
 
-function DevolverDañada(){
+function DevolverDañada()
+{
     $Id = $_POST['Id'];
 
     $Conexion = new PDODB();
@@ -419,46 +575,214 @@ function DevolverDañada(){
     $Conexion->Conectar();
 
 
-    $InstruccionSQL = "SELECT * FROM detalleprestamo WHERE IdDetallePrestamo = ".$Id;
+    $InstruccionSQL = "SELECT * FROM herramientadanada WHERE IdHerramientaDanada = " . $Id;
     $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
     foreach ($Resultado as $key => $Value) {
         ActHerramienta($Value['IdHerramientaInsumo'], $Value['CantidadElemento'], "+");
     }
-    $InstruccionSQL = "DELETE FROM detalleprestamo WHERE IdDetallePrestamo = ".$Id;
+    $InstruccionSQL = "DELETE FROM herramientadanada WHERE IdHerramientaDanada = " . $Id;
     $Resultado = $Conexion->EjecutarInstruccion($InstruccionSQL);
 
     if ($Resultado == true) {
         echo "Se han devuelto las herramientas";
     } else {
         echo "No fué posible";
-    }}
-
-    //fin admin
-
-    //inicio empleado
-
-    function ListarPrestamoEmpleado(){
-        session_start();
-        $IdEmpleado = $_SESSION['IdUsuario'];
-        $Conexion = new PDODB();
-        $Conexion->Conectar();
-        $InstruccionSQL = "SELECT prestamo.IdEmpleado, prestamo.IdPrestamo, herramientainsumo.Tipo, prestamo.FechaPrestamo, 
-        prestamo.Cantidad AS CantidadPrestamo,
-        herramientainsumo.Nombre AS NombreHerramienta FROM prestamo 
-         INNER JOIN herramientainsumo 
-         ON prestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
-         INNER JOIN empleado ON prestamo.IdEmpleado=empleado.IdEmpleado 
-         WHERE prestamo.IdEmpleado=" . $IdEmpleado;
-
-        $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
-        
-        foreach ($Resultado as $key => $Value) {
-        echo '<tr>
-            <td class="pt-3-half" contenteditable="false">'.$Value['IdPrestamo'].'</td>
-            <td class="pt-3-half" contenteditable="false">'.$Value['NombreHerramienta'].'</td>
-            <td class="pt-3-half" contenteditable="false">'.$Value['Tipo'].'</td>
-            <td class="pt-3-half" contenteditable="false">'.$Value['FechaPrestamo'].'</td>
-            <td class="pt-3-half" contenteditable="false">'.$Value['CantidadPrestamo'].'</td>
-      </tr>';
-        }   
     }
+}
+
+function CambiarAdmin(){
+    if ($_POST['Cambio'] == "Dañada"){
+        echo '
+    <main class="table">
+        <section class="TableBody">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Empleado</th>
+                        <th>Herramienta</th>
+                        <th>Cantidad</th>
+                        <th>Observacion</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody id="ListarPrestamoDañado">
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+    $(document).ready(function() {
+ 
+        ListarPrestamoDañado();
+
+    });
+</script>
+    '
+    ;
+    }    
+    else {
+        echo '
+        
+    <center>
+        <div class="empleadoyboton">
+            <div class="grid-item letra">
+                <p>Nombre Empleado</p>
+                <select name="NombreEmpleado" id="id_empleado">
+
+                </select>
+
+            </div>
+            <br>
+            <button class="Estado Activo" onclick="ConsultaEmpleadoPrestamo()">Listar</button>
+        </div>
+    </center>
+    <br>
+ 
+    <main class="table">
+        <section class="TableBody">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID prestamo</th>
+                        <th>ID detalle</th>
+                        <th>Empleado</th>
+                        <th>Herramienta</th>
+                        <th>Tipo</th>
+                        <th>Fecha Registro</th>
+                        <th>Cantidad</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody id="ListarPrestamoAdmin">
+
+
+
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+        <script>
+    $(document).ready(function() {
+        ListarPrestamoAdmin(-999);
+        ListarNombresEmpleado();
+    });
+</script>
+';
+    }
+}
+
+//fin admin
+
+//inicio empleado
+
+function ListarPrestamoEmpleado()
+{
+    session_start();
+    $IdEmpleado = $_SESSION['IdUsuario'];
+    $Conexion = new PDODB();
+    $Conexion->Conectar();
+    $InstruccionSQL = "SELECT prestamo.IdUsuario, detalleprestamo.IdPrestamo, detalleprestamo.IdDetallePrestamo ,herramientainsumo.Tipo, prestamo.FechaPrestamo, 
+        detalleprestamo.CantidadElemento AS CantidadPrestamo,
+        herramientainsumo.Nombre AS NombreHerramienta FROM detalleprestamo 
+         INNER JOIN herramientainsumo 
+         ON detalleprestamo.IdHerramientaInsumo=herramientainsumo.IdHerramientaInsumo 
+         INNER JOIN prestamo 
+         ON detalleprestamo.IdPrestamo=prestamo.IdPrestamo 
+         INNER JOIN usuario ON prestamo.IdUsuario=usuario.IdUsuario 
+         WHERE prestamo.IdUsuario=" . $IdEmpleado;
+
+    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+
+    foreach ($Resultado as $key => $Value) {
+        echo '<tr>
+            <td class="pt-3-half" contenteditable="false">' . $Value['IdDetallePrestamo'] . '</td>
+            <td class="pt-3-half" contenteditable="false">' . $Value['NombreHerramienta'] . '</td>
+            <td class="pt-3-half" contenteditable="false">' . $Value['Tipo'] . '</td>
+            <td class="pt-3-half" contenteditable="false">' . $Value['FechaPrestamo'] . '</td>
+            <td class="pt-3-half" contenteditable="false">' . $Value['CantidadPrestamo'] . '</td>
+      </tr>';
+    }
+}
+
+function ListarDanadaEmpleado()
+{
+    session_start();
+    $IdEmpleado = $_SESSION['IdUsuario'];
+    $Conexion = new PDODB();
+    $Conexion->Conectar();
+
+    $InstruccionSQL = "SELECT herramientadanada.IdHerramientaDanada, herramientadanada.CantidadElemento, herramientadanada.Observacion, herramientainsumo.Nombre AS NombreHerramienta, usuario.Nombre AS NombreEmpleado  FROM herramientadanada INNER JOIN herramientainsumo USING(IdHerramientaInsumo) INNER JOIN usuario USING(IdUsuario) WHERE IdUsuario =".$IdEmpleado;
+
+    $Resultado = $Conexion->ObtenerDatos($InstruccionSQL);
+
+    foreach ($Resultado as $key => $Value) {
+        echo '<tr>
+    <td class="pt-3-half" contenteditable="false">' . $Value['IdHerramientaDanada'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['NombreHerramienta'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['CantidadElemento'] . '</td>
+        <td class="pt-3-half" contenteditable="false">' . $Value['Observacion'] . '</td>
+</td>
+   </tr>';
+    }
+}
+
+function CambiarEmpleado(){
+    if ($_POST['Cambio'] == "Dañada"){
+echo '
+
+<main class="table">
+    <section class="TableBody">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Herramienta</th>
+                    <th>Cantidad</th>
+                    <th>Observacion</th>
+                </tr>
+            </thead>
+            <tbody id="ListarDanadaEmpleado">
+            </tbody>
+        </table>
+    </section>
+</main>
+<script>
+    $(document).ready(function() {
+        ListarDanadaEmpleado();
+    });
+</script>
+';
+    }
+    else{
+        echo '   
+
+    <main class="table">
+        <section class="TableBody">
+            <table>
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Herramienta</th>
+                    <th>Tipo</th>
+                    <th>Fecha Registro</th>
+                    <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="ListarPrestamoEmpleado">
+
+
+ 
+            
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+    $(document).ready(function() {
+        ListarPrestamoEmpleado();
+    });
+</script>
+    ';
+    }}

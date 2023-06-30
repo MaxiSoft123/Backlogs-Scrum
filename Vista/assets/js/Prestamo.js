@@ -16,7 +16,7 @@ function ListarRealizarP(Nombre, Tipo) {
         data: {
             'Nombre': Nombre,
             'Tipo': Tipo,
-            'Metodo': "a"
+            'Metodo': "ListarRealizarP"
         },
         datatype: "html",
         success: function (data) {
@@ -29,12 +29,11 @@ function ListarRealizarP(Nombre, Tipo) {
 function CambiarImagen(Id){
     if (IdRegistrados.includes(Id)) {
         Boton = document.getElementById("boton"+Id)
-        Boton.src = '../Vista/Assets/Iconos/desactivar.svg'
+        Boton.src = '../Vista/Assets/Iconos/eliminar.svg'
     }
 }
 
 function Asignar(Id) {
-
     Boton = document.getElementById("boton"+Id)
     if (IdRegistrados.includes(Id)) {
         Referencia = document.getElementById("referencia" + Id)
@@ -50,10 +49,7 @@ function Asignar(Id) {
         Boton.src = '../Vista/Assets/Iconos/eliminar.svg'
         Asigna++
         Nombre = document.getElementById("Nombre" + Id).value
-
-
-    
-
+        Tipo = document.getElementById("Tipo" + Id).value
         Cantidad = document.getElementById("cantidad" + Id).value
          if(Cantidad == ""){
             Cantidad = 1 
@@ -63,6 +59,8 @@ function Asignar(Id) {
         var Cosa = document.createElement('tr');
         Cosa.setAttribute("id", "div" + Asigna);
         Cosa.setAttribute("class", "divAsigna");
+
+
         var Th = document.createElement("th");
         var Input = document.createElement("input");
         Input.setAttribute("type", "text");
@@ -72,6 +70,18 @@ function Asignar(Id) {
         Input.setAttribute("readonly", true)
         Th.appendChild(Input)
         Cosa.appendChild(Th)
+
+
+        var Th = document.createElement("th");
+        var Input = document.createElement("input");
+        Input.setAttribute("type", "text");
+        Input.setAttribute("class", "campoprestar");
+        Input.setAttribute("value", Tipo);
+        Input.setAttribute("readonly", true)
+        Th.appendChild(Input)
+        Cosa.appendChild(Th)
+
+
         var Th = document.createElement("th");
         var Input = document.createElement("input");
         Input.setAttribute("type", "text");
@@ -123,7 +133,7 @@ function Prestar() {
                 'Ides': Id,
                 'Cantidades': Cantidades,
                 'IdEmpleado': Empleado,
-                'Metodo': "r"
+                'Metodo': "Prestar"
             },
             datatype: "html",
             success: function (data) {
@@ -149,7 +159,7 @@ function ListarNombresEmpleado(){
         type: "POST",
         url: "../Controlador/Prestamo.php",
         data: {
-            'Metodo': "D"
+            'Metodo': "ListarNombresEmpleado"
         },
         datatype: "html",
         success: function (data) {
@@ -164,7 +174,7 @@ function ListarNombresHerramienta(){
         type: "POST",
         url: "../Controlador/Prestamo.php",
         data: {
-            'Metodo': "d",
+            'Metodo': "ListarNombresHerramienta",
             'Tipo': Tipo
         },
         datatype: "html",
@@ -198,7 +208,7 @@ $.ajax({
     url: "../Controlador/Prestamo.php",
     data: {
         'NombreEmpleado': NombreEmpleado,
-        'Metodo': "l"
+        'Metodo': "ListarPrestamoAdmin"
     },
     datatype: "html",
     success: function (data) {
@@ -212,7 +222,7 @@ $.ajax({
     type: "POST",
     url: "../Controlador/Prestamo.php",
     data: {
-        'Metodo': "L"
+        'Metodo': "ListarPrestamoDañado"
     },
     datatype: "html",
     success: function (data) {
@@ -227,14 +237,14 @@ function ConsultaEmpleadoPrestamo(){
 }
 
 
-function ModalModificarPrestamo(IdPrestamo){
+function ModalModificarPrestamo(IdDetallePrestamo){
     window.modal.showModal();
     $.ajax({
         type: 'POST',
         url: "../Controlador/Prestamo.php",
         data: {
-            'IdPrestamo': IdPrestamo,
-            'Metodo': "k"
+            'IdDetallePrestamo': IdDetallePrestamo,
+            'Metodo': "ModalModificarPrestamo"
         },
         success: function (data) {
             $('.modal-body').text("");
@@ -260,36 +270,38 @@ function Validacion2(){
 }
 function ModificarPrestamo(){
     CantidadPrestamo = document.getElementById("CantidadPrestamo").value
-    IdPrestamo = document.getElementById("IdPrestamo").value
+    IdDetallePrestamo = document.getElementById("IdDetallePrestamo").value
     if (CantidadPrestamo == ""){
         alert("Ingrese una Cantidad");
     }
     else{
-        cerrarModal();
+        CerrarModal();
         $.ajax({
             type: 'POST',
             url: "../Controlador/Prestamo.php",
             data: {
                 'CantidadPrestamo': CantidadPrestamo,
-                'IdPrestamo': IdPrestamo,
-                'Metodo': 'K'
+                'IdDetallePrestamo': IdDetallePrestamo,
+                'Metodo': 'ModificarPrestamo'
             },
             success: function (data) {
                 alert(data);
+                ListarNombresEmpleadoPrestados();
                 ListarPrestamoAdmin(-999);
             }    
         });
     }
 }
 
-function ModalDevolverHerramienta(IdPrestamo){
+
+function ModalDevolverHerramienta(IdDetallePrestamo){
     window.modal.showModal();
     $.ajax({
         type: 'POST',
         url: "../Controlador/Prestamo.php",
         data: {
-            'IdPrestamo': IdPrestamo,
-            'Metodo': "z"
+            'IdDetallePrestamo': IdDetallePrestamo,
+            'Metodo': "ModalDevolverHerramienta"
         },
         success: function (data) {
             $('.modal-body').text("");
@@ -331,39 +343,39 @@ function Validacion3() {
 }
 
 function MetodoModal(){
-    Metodo = document.getElementById("Metodo").value
-    if (Metodo == "Modificar"){
+    Metodo2 = document.getElementById("Metodo2").value
+    if (Metodo2 == "Modificar"){
     ModificarPrestamo()
 }
-    else if (Metodo == "Devolver"){
+    else if (Metodo2 == "Devolver"){
     DevolverHerramienta()
     }
-    else if (Metodo == "Insumo"){
+    else if (Metodo2 == "Insumo"){
         EliminarInsumo()
         }
 }
 
 function EliminarInsumo(){
-    IdPrestamo = document.getElementById("IdPrestamo3").value
-    cerrarModal();
+    IdDetallePrestamo = document.getElementById("IdDetallePrestamo3").value
+    CerrarModal();
     $.ajax({
         type: "POST",
         url: "../Controlador/Prestamo.php",
         data: {
-            'IdPrestamo': IdPrestamo,
-            'Metodo': "Ñ"
+            'IdDetallePrestamo': IdDetallePrestamo,
+            'Metodo': "EliminarInsumo"
         },
         datatype: "html",
         success: function (data) {
             alert(data);
             ListarPrestamoAdmin(-999)
-            ListarPrestamoDañado()
+            ListarNombresEmpleadoPrestados()
         },
     });
 }
 
 function DevolverHerramienta(){
-    IdPrestamo = document.getElementById("IdPrestamo2").value
+    IdDetallePrestamo = document.getElementById("IdDetallePrestamo2").value
     Select = document.getElementById("Select").value
     CantidadDañado = ""
     Observacion = ""
@@ -378,23 +390,27 @@ function DevolverHerramienta(){
     else if(Select == "si" && Observacion == ""){
         alert("Ingrese el motivo");
     }
+    else if(Observacion.trim() !== Observacion){
+        alert("El motivo no puede iniciar con un espacio"); 
+    }
+    
     else{
-    cerrarModal();
+    CerrarModal();
     $.ajax({
         type: "POST",
         url: "../Controlador/Prestamo.php",
         data: {
-            'IdPrestamo': IdPrestamo,
+            'IdDetallePrestamo': IdDetallePrestamo,
             'Select': Select,
             'CantidadDañado': CantidadDañado,
             'Observacion': Observacion,
-            'Metodo': "Z"
+            'Metodo': "DevolverHerramienta"
         },
         datatype: "html",
         success: function (data) {
             alert(data);
+            ListarNombresEmpleadoPrestados();
             ListarPrestamoAdmin(-999)
-            ListarPrestamoDañado()
         },
     });}
 }
@@ -405,13 +421,27 @@ function DevolverDañada(Id){
         url: "../Controlador/Prestamo.php",
         data: {
             'Id': Id,
-            'Metodo': "V"
+            'Metodo': "DevolverDañada"
         },
         datatype: "html",
         success: function (data) {
             alert(data);
-            ListarPrestamoAdmin(-999)
             ListarPrestamoDañado()
+        },
+    });
+}
+
+function ListarNombresEmpleadoPrestados(){
+    $.ajax({
+        type: "POST",
+        url: "../Controlador/Prestamo.php",
+        data: {
+            'Metodo': "ListarNombresEmpleadoPrestados"
+        },
+        datatype: "html",
+        success: function (data) {
+            $('#id_empleado').text("");
+            $('#id_empleado').append(data);
         },
     });
 }
@@ -422,7 +452,7 @@ function ListarPrestamoEmpleado(){
         type: "POST",
         url: "../Controlador/Prestamo.php",
         data: {
-            'Metodo': "ñ"
+            'Metodo': "ListarPrestamoEmpleado"
         },
         datatype: "html",
         success: function (data) {
@@ -431,3 +461,52 @@ function ListarPrestamoEmpleado(){
         },
     });
     }
+
+function ListarDanadaEmpleado(){
+    $.ajax({
+        type: "POST",
+        url: "../Controlador/Prestamo.php",
+        data: {
+            'Metodo': "ListarDanadaEmpleado"
+        },
+        datatype: "html",
+        success: function (data) {
+            $('#ListarDanadaEmpleado').text("");
+            $('#ListarDanadaEmpleado').append(data);
+        },
+    });
+    }
+function CambiarAdmin(Cambio){
+    $.ajax({
+        type: "POST",
+        url: "../Controlador/Prestamo.php",
+        data: {
+            'Cambio': Cambio,
+            'Metodo': "CambiarAdmin"
+        },
+        datatype: "html",
+        success: function (data) {
+            $('.CambiarAdmin').text("");
+            $('.CambiarAdmin').append(data);
+        },
+    });
+    
+}
+
+
+function CambiarEmpleado(Cambio){
+    $.ajax({
+        type: "POST",
+        url: "../Controlador/Prestamo.php",
+        data: {
+            'Cambio': Cambio,
+            'Metodo': "CambiarEmpleado"
+        },
+        datatype: "html",
+        success: function (data) {
+            $('.CambiarEmpleado').text("");
+            $('.CambiarEmpleado').append(data);
+        },
+    });
+    
+}

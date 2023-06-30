@@ -148,6 +148,26 @@ a {
     cursor: pointer;
 }
 
+.BotonAmarillo {
+    text-align: center;
+    background-color: #ffd900;
+    color: #000000;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.BotonGris {
+    text-align: center;
+    background-color: #4b4b4b;
+    color: #000000;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
 
 /* fin estilos de los botones */
 
@@ -184,12 +204,12 @@ a {
 
 /* SCROLLBAR */
 
-::-webkit-scrollbar {
+ ::-webkit-scrollbar {
     background-color: #0029e0;
     display: none;
 }
 
-::-webkit-scrollbar-thumb {
+ ::-webkit-scrollbar-thumb {
     background-color: #0029e0;
     display: none;
 }
@@ -304,8 +324,24 @@ input[type="time"] {
     border: none;
     border-bottom: 2px solid white;
     width: 100%;
-    color: #a8cf45;
+    color: #b7ff00;
     outline: none;
+}
+
+.ContenedorAñadir input[type="time"]:disabled {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    width: 100%;
+    color: #6e6e6e;
+    outline: none;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #b7ff00;
+    border-radius: 50%;
+    padding: 8px;
+    margin: 5px;
 }
 
 .ContenedorAñadir select {
@@ -315,6 +351,20 @@ input[type="time"] {
     width: 100%;
     color: white;
     outline: none;
+}
+
+select {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    width: 100%;
+    color: white;
+    outline: none;
+}
+
+option {
+    background: #1a1a1a;
+    color: #2196F3;
 }
 
 .ContenedorAñadir option {
@@ -374,6 +424,18 @@ input[type="time"] {
     border-radius: 5px;
 }
 
+.Estado.Rechazado {
+    background-color: #ff000060;
+    color: #ff4a4a;
+    border-radius: 5px;
+}
+
+.Estado.Aceptado {
+    background-color: #3c5300;
+    color: #b7ff00;
+    border-radius: 5px;
+}
+
 
 /* fin listar roles */
 
@@ -421,7 +483,6 @@ input[type="time"] {
     margin: 10px;
 }
 
-
 #modal input[type="number"],
 input[type="password"],
 input[type="time"],
@@ -434,7 +495,11 @@ input[type="text"] {
     outline: none;
 }
 
-#modal select {
+input [type="date"] {
+    color: white;
+}
+
+input #modal select {
     background: transparent;
     border: none;
     border-bottom: 2px solid white;
@@ -465,7 +530,6 @@ dialog::backdrop {
     from {
         transform: translateY(-110%);
     }
-
     to {
         transform: translateY(0%);
     }
@@ -517,6 +581,11 @@ dialog::backdrop {
     transition: left 0.25s;
 }
 
+.CheckboxRol {
+    display: inline-block;
+    margin-right: 5%;
+}
+
 .toggle:hover .toggle-switch:before {
     background: linear-gradient(to bottom, #fff 0%, #fff 100%);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
@@ -551,7 +620,6 @@ dialog::backdrop {
 /* responsive */
 
 @media only screen and (max-width: 950px) {
-
     /* BARRA LATERAL RESPOSIVE */
     .header {
         z-index: 1;
@@ -566,7 +634,6 @@ dialog::backdrop {
         overflow: hidden;
         z-index: 10;
     }
-
     #sidebarMenu {
         z-index: 1;
         height: 100%;
@@ -578,17 +645,14 @@ dialog::backdrop {
         transition: transform 250ms ease-in-out;
         background: #000000;
     }
-
     input[type="checkbox"]:checked~#sidebarMenu {
         transform: translateX(0);
     }
-
     input[type=checkbox] {
         transition: all 0.3s;
         box-sizing: border-box;
         display: none;
     }
-
     .sidebarIconToggle {
         transition: all 0.3s;
         box-sizing: border-box;
@@ -602,7 +666,6 @@ dialog::backdrop {
         height: 22px;
         width: 22px;
     }
-
     .spinner {
         transition: all 0.3s;
         box-sizing: border-box;
@@ -611,7 +674,6 @@ dialog::backdrop {
         width: 100%;
         background-color: #fff;
     }
-
     .horizontal {
         transition: all 0.3s;
         box-sizing: border-box;
@@ -619,14 +681,12 @@ dialog::backdrop {
         float: left;
         margin-top: 3px;
     }
-
     .diagonal.part-1 {
         position: relative;
         transition: all 0.3s;
         box-sizing: border-box;
         float: left;
     }
-
     .diagonal.part-2 {
         transition: all 0.3s;
         box-sizing: border-box;
@@ -634,51 +694,43 @@ dialog::backdrop {
         float: left;
         margin-top: 3px;
     }
-
     input[type=checkbox]:checked~.sidebarIconToggle>.horizontal {
         transition: all 0.3s;
         box-sizing: border-box;
         opacity: 0;
     }
-
     input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-1 {
         transition: all 0.3s;
         box-sizing: border-box;
         transform: rotate(135deg);
         margin-top: 8px;
     }
-
     input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
         transition: all 0.3s;
         box-sizing: border-box;
         transform: rotate(-135deg);
         margin-top: -9px;
     }
-
     .nav__link {
         color: #ffffff;
         display: block;
         padding: 15px 0;
         text-decoration: none;
     }
-
     .nav__link--inside {
         border-radius: 6px;
         padding-left: 5px;
         text-align: left;
     }
-
     .list__item {
         list-style: none;
         width: 100%;
         text-align: center;
         overflow: hidden;
     }
-
     .list__item--click {
         cursor: pointer;
     }
-
     .list__button {
         display: flex;
         align-items: center;
@@ -686,12 +738,10 @@ dialog::backdrop {
         width: 70%;
         margin: 0 auto;
     }
-
     .list__arrow {
         margin-left: auto;
         transition: transform .3s;
     }
-
     .list__show {
         width: 60%;
         margin-left: 45px;
@@ -700,12 +750,10 @@ dialog::backdrop {
         transition: height .4s;
         height: 0;
     }
-
     .list {
         padding: 0;
         margin: 0;
     }
-
     /* FIN BARRA LATERAL RESPOSIVE */
     /* CONTENEDOR CONTENIDO RESPOSIVE */
     .content-wrapper {
@@ -714,13 +762,11 @@ dialog::backdrop {
         align-items: center;
         padding-top: 100px;
     }
-
     .ContenedorContenido {
         margin: 0;
         height: 656px;
         overflow: auto;
     }
-
     .ContenedorSaludo {
         background: #00F260;
         /* fallback for old browsers */
@@ -733,31 +779,25 @@ dialog::backdrop {
         display: flex;
         flex-direction: column;
     }
-
     .ContenedorSaludo img {
         width: 300px;
     }
-
     .ContenedorSaludo h1 {
         font-size: 25px;
     }
-
     /* FIN CONTENEDOR CONTENIDO RESPOSIVE */
     /* TABLAS RESPOSIVE */
     .ContenedorListar {
         width: 100%;
         margin: 0;
     }
-
     .ContenedorListar .table {
         width: 95%;
         overflow: auto;
     }
-
     .ContenedorAñadir {
         width: 100%;
     }
-
     /* FIN TABLAS RESPOSIVE */
 }
 

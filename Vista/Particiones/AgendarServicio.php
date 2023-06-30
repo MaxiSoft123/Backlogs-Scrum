@@ -57,5 +57,6 @@
         SelectUsuario();
         SelectInsumo();
         SelectUnidadMedida();
+        ListarNombresEmpleado();
     });
 </script>

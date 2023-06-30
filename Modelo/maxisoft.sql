@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2023 a las 00:17:59
+-- Tiempo de generación: 29-06-2023 a las 23:46:24
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -29,17 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `agendamiento` (
   `IdAgendamiento` int(10) NOT NULL,
-  `IdEmpleado` int(10) NOT NULL,
-  `IdServicio` int(10) NOT NULL,
+  `IdUsuario` int(50) NOT NULL,
+  `IdServicio` int(50) NOT NULL,
+  `IdHerramientaInsumo` varchar(50) NOT NULL,
   `NombreCliente` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Descripcion` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `FechaServicio` date NOT NULL,
   `HoraAgendamiento` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `DireccionCliente` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `TelefonoCliente` bigint(15) NOT NULL,
-  `Cantidad` int(10) NOT NULL,
-  `Estado` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `IdHerramientaInsumo` int(11) NOT NULL
+  `Estado` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -50,46 +49,31 @@ CREATE TABLE `agendamiento` (
 
 CREATE TABLE `detalleprestamo` (
   `IdDetallePrestamo` int(10) NOT NULL,
+  `IdPrestamo` int(10) NOT NULL,
   `IdHerramientaInsumo` int(10) NOT NULL,
+  `CantidadElemento` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `herramientadanada`
+--
+
+CREATE TABLE `herramientadanada` (
+  `IdHerramientaDanada` int(10) NOT NULL,
+  `IdHerramientaInsumo` int(10) NOT NULL,
+  `IdUsuario` int(10) NOT NULL,
   `CantidadElemento` int(20) NOT NULL,
   `Observacion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `detalleprestamo`
+-- Volcado de datos para la tabla `herramientadanada`
 --
 
-INSERT INTO `detalleprestamo` (`IdDetallePrestamo`, `IdHerramientaInsumo`, `CantidadElemento`, `Observacion`) VALUES
-(2, 4, 9, 'agua');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado`
---
-
-CREATE TABLE `empleado` (
-  `IdEmpleado` int(20) NOT NULL,
-  `Nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Apellido` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `TipoDocumento` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Documento` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Correo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Telefono` int(50) NOT NULL,
-  `Direccion` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Estado` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`IdEmpleado`, `Nombre`, `Apellido`, `TipoDocumento`, `Documento`, `Correo`, `Telefono`, `Direccion`, `Estado`) VALUES
-(1, 'Pablo', 'Franco', 'Cédula', '1234', 'oe@gmail.com', 301, 'szs', 1),
-(2, 'Dana', 'Andresa', 'Cédula', '1234', 'dana@gmail.com', 1234, 'aya', 1),
-(3, 'Alvaro', 'Alvarado', 'Cédula', '1234', 'alvaro@gmail.com', 1234, 'Mi casa', 1),
-(4, 'Alvaro', 'Andresa', 'Cédula', '1234', 'alvaro@gmail.com', 2147483647, 'Mi casa', 1),
-(5, 'Yenny', 'Durango', 'Cédula', '1234', 'yenny@gmail.com', 2147483647, 'Mi casa', 1);
+INSERT INTO `herramientadanada` (`IdHerramientaDanada`, `IdHerramientaInsumo`, `IdUsuario`, `CantidadElemento`, `Observacion`) VALUES
+(12, 38, 1, 12, 'kasdhjk');
 
 -- --------------------------------------------------------
 
@@ -106,36 +90,69 @@ CREATE TABLE `herramientainsumo` (
   `Color` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `FechaCompra` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `Cantidad` int(11) NOT NULL,
-  `Medida` varchar(12) COLLATE utf8_unicode_ci NOT NULL
+  `Medida` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `Estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `herramientainsumo`
 --
 
-INSERT INTO `herramientainsumo` (`IdHerramientaInsumo`, `Nombre`, `Tipo`, `Categoria`, `Descripcion`, `Color`, `FechaCompra`, `Cantidad`, `Medida`) VALUES
-(1, 'fe', '32', '32', '23', '23', '23', 21, 'm'),
-(2, 'Moden 2 antenas', 'Herramienta', 'Manual', 'para tener covertura', 'azul', '2022-11-28', 6, 'm'),
-(3, 'clavos', 'insumo', 'manual', 'para clavar', 'gris', '2022-11-22', 0, ''),
-(4, 'grapas', 'insumo', 'manual', 'para pegar cable a l', 'gris', '2022-11-22', 12, ''),
-(5, 'moden 3 antenas', 'insumo', 'router', 'para tener covertura', 'blanco', '2022-11-04', 6, ''),
-(6, 'llave ingresa', 'herramienta', 'manual', 'para desatornillar t', 'rojo', '2022-11-16', 0, ''),
-(7, '76', 'opcion1', '76', '76', '76', '0000-00-00', 6, ''),
-(8, '56', 'herramienta', '6', '56', '56', '0000-00-00', 56, ''),
-(24, 'pala', 'herramienta', 'manual', 'para palear', 'negro', '19-05-2023', 2, ''),
-(25, 'Grapas', 'insumo', 'manual', 'para grapar', 'negro', '19-05-2023', 78, ''),
-(26, 'clavo', 'insumo', 'cable', 'asas', 'azul', '31-05-2023', 200, ''),
-(27, 'aadasd', 'insumo', 'cable', 'adad', 'adad', '31-05-2023', 34, ''),
-(28, 'ad', 'insumo', 'cable', 'ad', 'ad', '31-05-2023', 21, 'medida'),
-(29, '', 'herramienta', 'manual', '', '', '02-06-2023', 0, 'medida'),
-(30, '', 'herramienta', 'manual', '', '', '02-06-2023', 0, 'medida'),
-(31, 'a', 'herramienta', 'manual', '', '', '02-06-2023', 0, ''),
-(32, 'ola', 'insumo', 'cable', '', '', '02-06-2023', 0, ''),
-(33, 'val', 'insumo', 'cable', '', '', '02-06-2023', 0, ''),
-(34, '76', 'herramienta', 'manual', '', '', '02-06-2023', 0, ''),
-(35, '87', 'herramienta', 'manual', '', '', '02-06-2023', 0, ''),
-(36, 'ava', 'insumo', 'cable', 'ava', 'ava', '02-06-2023', 0, 'cm'),
-(37, 'a', 'herramienta', 'manual', 'a', 'a', '02-06-2023', 4, 'm');
+INSERT INTO `herramientainsumo` (`IdHerramientaInsumo`, `Nombre`, `Tipo`, `Categoria`, `Descripcion`, `Color`, `FechaCompra`, `Cantidad`, `Medida`, `Estado`) VALUES
+(38, 'tales de tales', 'Herramienta', 'Manual', '123', '123', '22-06-2023', 111, 'M', 0),
+(39, 'tales', 'Insumo', 'Cable', '123', '23', '29-06-2023', 123, 'U', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `insumoagenda`
+--
+
+CREATE TABLE `insumoagenda` (
+  `IdInsumoAgenda` int(11) NOT NULL,
+  `IdHerramientaInsumo` varchar(50) NOT NULL,
+  `IdAgendamiento` int(11) NOT NULL,
+  `Cantidad` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `novedad`
+--
+
+CREATE TABLE `novedad` (
+  `IdNovedad` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `Peticion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Descripcion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `FechaRegistro` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `FechaInicio` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `FechaFinal` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `HoraInicio` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `HoraFinal` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `EstadoNovedad` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permiso`
+--
+
+CREATE TABLE `permiso` (
+  `IdPermiso` int(20) NOT NULL,
+  `NombrePermiso` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Permiso` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `permiso`
+--
+
+INSERT INTO `permiso` (`IdPermiso`, `NombrePermiso`, `Permiso`) VALUES
+(1, 'Administrador', '1'),
+(2, 'Empleado', '0');
 
 -- --------------------------------------------------------
 
@@ -145,18 +162,9 @@ INSERT INTO `herramientainsumo` (`IdHerramientaInsumo`, `Nombre`, `Tipo`, `Categ
 
 CREATE TABLE `prestamo` (
   `IdPrestamo` int(10) NOT NULL,
-  `IdEmpleado` int(10) NOT NULL,
-  `IdHerramientaInsumo` int(11) NOT NULL,
-  `FechaPrestamo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Cantidad` int(20) NOT NULL
+  `IdUsuario` int(10) NOT NULL,
+  `FechaPrestamo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `prestamo`
---
-
-INSERT INTO `prestamo` (`IdPrestamo`, `IdEmpleado`, `IdHerramientaInsumo`, `FechaPrestamo`, `Cantidad`) VALUES
-(80, 5, 1, '09-06-2023', 2);
 
 -- --------------------------------------------------------
 
@@ -167,6 +175,7 @@ INSERT INTO `prestamo` (`IdPrestamo`, `IdEmpleado`, `IdHerramientaInsumo`, `Fech
 CREATE TABLE `rol` (
   `IdRol` int(50) NOT NULL,
   `NombreRol` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `IdPermiso` int(20) NOT NULL,
   `Permisos` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `FechaRol` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `EstadoRol` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -176,41 +185,35 @@ CREATE TABLE `rol` (
 -- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `rol` (`IdRol`, `NombreRol`, `Permisos`, `FechaRol`, `EstadoRol`) VALUES
-(1, 'Administrador', '1,1,1,1,1,1,1', '07-06-2023 12:24:08', '1'),
-(2, 'Novato', '1,1,1,0,0,0,0', '09-06-2023 09:57:44', '1'),
-(3, 'Practicantes', '1,1,1,0,0,0,0', '09-06-2023 09:57:50', '0');
+INSERT INTO `rol` (`IdRol`, `NombreRol`, `IdPermiso`, `Permisos`, `FechaRol`, `EstadoRol`) VALUES
+(1, 'Administrador', 1, '1,1,1,1,1,1,1', '07-06-2023 12:24:08', '1'),
+(2, 'Novato', 1, '1,1,1,1,1,1,1', '07-06-2023 12:24:08', '1'),
+(3, 'Practicante', 2, '1,1,0', '07-06-2023 12:24:08', '1'),
+(10, 'Semi Administrador', 1, '1,1,0,0,0,1,1', '16-06-2023 07:12:36', '1'),
+(11, 'Semi Novato', 2, '1,0,1', '16-06-2023 07:13:05', '1'),
+(16, 'jbnj', 2, '1,1,1', '22-06-2023 12:38:38', '1');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `servicios`
+-- Estructura de tabla para la tabla `servicio`
 --
 
-CREATE TABLE `servicios` (
-  `IdServicio` int(11) NOT NULL,
-  `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `Estado` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `servicio` (
+  `IdServicio` int(50) NOT NULL,
+  `Nombre` varchar(30) NOT NULL,
+  `Estado` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `servicios`
+-- Volcado de datos para la tabla `servicio`
 --
 
-INSERT INTO `servicios` (`IdServicio`, `Nombre`, `Estado`) VALUES
-(1, 'Manolo', 'Activado'),
-(2, 'cambio de contraseña', 'Desactivado'),
-(3, 'cambio de cable', 'Activado'),
-(4, 'cambio de router', 'Desactivado'),
-(5, 'cambio de nombre wifi', 'Activado'),
-(19, 'Hola', 'Activado'),
-(20, 'Manola', 'Activado'),
-(21, '', 'Desactivado'),
-(22, '', 'Activado'),
-(23, 'Juan', 'Activado'),
-(24, 'Pablo', 'Activado'),
-(25, 'Papa', 'Activado'),
-(26, 'Luffy', 'Activado');
+INSERT INTO `servicio` (`IdServicio`, `Nombre`, `Estado`) VALUES
+(1, 'Cambio de Router', '2'),
+(2, 'Cambio de Antena', '1'),
+(3, 'Agregar Repetidor', '1'),
+(4, 'Cambio de Servicio', '2');
 
 -- --------------------------------------------------------
 
@@ -224,10 +227,10 @@ CREATE TABLE `usuario` (
   `Nombre` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Apellido` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `TipoDocumento` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Documento` int(30) NOT NULL,
+  `Documento` bigint(30) NOT NULL,
   `Correo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Contrasena` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Telefono` int(20) NOT NULL,
+  `Telefono` bigint(20) NOT NULL,
   `Direccion` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -238,10 +241,12 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`IdUsuario`, `IdRol`, `Nombre`, `Apellido`, `TipoDocumento`, `Documento`, `Correo`, `Contrasena`, `Telefono`, `Direccion`, `Estado`) VALUES
 (1, 1, 'Pablo', 'Franco', 'Cédula', 1234, 'oe@gmail.com', '6a6189213a862710e0176352cde959d5f6d5037aa10d10eb60154d4e8f65d93252eacc18b4e2133e1a9232d5d86c2eb03e421d71b3c31d7ae773c14981ce9390', 301, 'szs', 1),
-(2, 2, 'Dana', 'Andresa', 'Cédula', 1234, 'dana@gmail.com', '6a6189213a862710e0176352cde959d5f6d5037aa10d10eb60154d4e8f65d93252eacc18b4e2133e1a9232d5d86c2eb03e421d71b3c31d7ae773c14981ce9390', 1234, 'aya', 1),
-(3, 3, 'Alvaro', 'Alvarado', 'Cédula', 1234, 'alvaro@gmail.com', '6a6189213a862710e0176352cde959d5f6d5037aa10d10eb60154d4e8f65d93252eacc18b4e2133e1a9232d5d86c2eb03e421d71b3c31d7ae773c14981ce9390', 1234, 'Mi casa', 1),
+(2, 1, 'Dana Andresa', 'Aranga Chavarra', 'Cédula', 1011310101, 'dana@gmail.com', 'sG8Gy3UB9+Dg+2QSmJNMbiOv4vwANTgHthYjDxzsFXk=', 3244723715, 'aya', 1),
+(3, 3, 'Alvaro', 'Alvarado', 'Cédula', 1234, 'alvaro@gmail.com', '6a6189213a862710e0176352cde959d5f6d5037aa10d10eb60154d4e8f65d93252eacc18b4e2133e1a9232d5d86c2eb03e421d71b3c31d7ae773c14981ce9390', 1234, 'Mi casa', 0),
 (4, 3, 'Alvaro', 'Andresa', 'Cédula', 1234, 'alvaro@gmail.com', '449f672e7cd44e00c2c8a55cd3af89ce6ce1ace97e2cdf8ba9bfa5991ae1dbaaa0e24d70ce44313401cd5bfc5485625e775691944a5c0903b184c9fbc4cd2b34', 2147483647, 'Mi casa', 1),
-(5, 1, 'Yenny', 'Durango', 'Cédula', 1234, 'yenny@gmail.com', 'be35cc81970680c7795eaea095bed0f2feefc4d24cba3c710f0c7cb3f75ffbca5d590a5ad6e89f1679725b72ffe13b457cd81db3220f1160770811e775435839', 2147483647, 'Mi casa', 1);
+(5, 1, 'Yenny', 'Durango', 'Cédula', 1234, 'yenny@gmail.com', 'be35cc81970680c7795eaea095bed0f2feefc4d24cba3c710f0c7cb3f75ffbca5d590a5ad6e89f1679725b72ffe13b457cd81db3220f1160770811e775435839', 2147483647, 'Mi casa', 1),
+(6, 16, 'paco', 'pacosteco', 'Tarjeta de identidad', 12038134, 'paco@gmail.com', '0bb66d489c087e32be726ce3276fe29495885976f823a75c3436615b7017aff97f006d17a159ce3a5b2cc9f02c1e4993ebe22035e4f85caacf3cfbe2e7d8fce4', 2147483647, 'peaco', 0),
+(7, 1, 'Tester', 'Master', 'cc', 1234567890, 'tron@gmail.com', '6a6189213a862710e0176352cde959d5f6d5037aa10d10eb60154d4e8f65d93252eacc18b4e2133e1a9232d5d86c2eb03e421d71b3c31d7ae773c14981ce9390', 12, '1', 1);
 
 --
 -- Índices para tablas volcadas
@@ -252,22 +257,24 @@ INSERT INTO `usuario` (`IdUsuario`, `IdRol`, `Nombre`, `Apellido`, `TipoDocument
 --
 ALTER TABLE `agendamiento`
   ADD PRIMARY KEY (`IdAgendamiento`),
-  ADD KEY `id_empleado` (`IdEmpleado`,`IdServicio`),
-  ADD KEY `id_servicio` (`IdServicio`),
-  ADD KEY `id_herramienta_e_insumo` (`IdHerramientaInsumo`);
+  ADD KEY `IdUsuario` (`IdUsuario`),
+  ADD KEY `IdServicio` (`IdServicio`);
 
 --
 -- Indices de la tabla `detalleprestamo`
 --
 ALTER TABLE `detalleprestamo`
   ADD PRIMARY KEY (`IdDetallePrestamo`),
-  ADD KEY `id_herramienta_e_insumo` (`IdHerramientaInsumo`);
+  ADD KEY `IdPrestamo` (`IdPrestamo`),
+  ADD KEY `IdHerramientaInsumo` (`IdHerramientaInsumo`);
 
 --
--- Indices de la tabla `empleado`
+-- Indices de la tabla `herramientadanada`
 --
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`IdEmpleado`);
+ALTER TABLE `herramientadanada`
+  ADD PRIMARY KEY (`IdHerramientaDanada`),
+  ADD KEY `id_herramienta_e_insumo` (`IdHerramientaInsumo`),
+  ADD KEY `IdPrestamo` (`IdUsuario`);
 
 --
 -- Indices de la tabla `herramientainsumo`
@@ -276,23 +283,44 @@ ALTER TABLE `herramientainsumo`
   ADD PRIMARY KEY (`IdHerramientaInsumo`);
 
 --
+-- Indices de la tabla `insumoagenda`
+--
+ALTER TABLE `insumoagenda`
+  ADD PRIMARY KEY (`IdInsumoAgenda`),
+  ADD KEY `IdAgendamiento` (`IdAgendamiento`),
+  ADD KEY `IdHerramientaInsumo` (`IdHerramientaInsumo`);
+
+--
+-- Indices de la tabla `novedad`
+--
+ALTER TABLE `novedad`
+  ADD PRIMARY KEY (`IdNovedad`),
+  ADD KEY `IdEmpleado` (`IdUsuario`);
+
+--
+-- Indices de la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  ADD PRIMARY KEY (`IdPermiso`);
+
+--
 -- Indices de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
   ADD PRIMARY KEY (`IdPrestamo`),
-  ADD KEY `id_empleado` (`IdEmpleado`),
-  ADD KEY `id_herramienta_e_insumo` (`IdHerramientaInsumo`);
+  ADD KEY `id_empleado` (`IdUsuario`);
 
 --
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
-  ADD PRIMARY KEY (`IdRol`);
+  ADD PRIMARY KEY (`IdRol`),
+  ADD KEY `IdPermiso` (`IdPermiso`);
 
 --
--- Indices de la tabla `servicios`
+-- Indices de la tabla `servicio`
 --
-ALTER TABLE `servicios`
+ALTER TABLE `servicio`
   ADD PRIMARY KEY (`IdServicio`);
 
 --
@@ -310,49 +338,67 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `agendamiento`
 --
 ALTER TABLE `agendamiento`
-  MODIFY `IdAgendamiento` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdAgendamiento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleprestamo`
 --
 ALTER TABLE `detalleprestamo`
-  MODIFY `IdDetallePrestamo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdDetallePrestamo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT de la tabla `empleado`
+-- AUTO_INCREMENT de la tabla `herramientadanada`
 --
-ALTER TABLE `empleado`
-  MODIFY `IdEmpleado` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `herramientadanada`
+  MODIFY `IdHerramientaDanada` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `herramientainsumo`
 --
 ALTER TABLE `herramientainsumo`
-  MODIFY `IdHerramientaInsumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `IdHerramientaInsumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT de la tabla `insumoagenda`
+--
+ALTER TABLE `insumoagenda`
+  MODIFY `IdInsumoAgenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT de la tabla `novedad`
+--
+ALTER TABLE `novedad`
+  MODIFY `IdNovedad` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  MODIFY `IdPermiso` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  MODIFY `IdPrestamo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `IdPrestamo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `IdRol` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdRol` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT de la tabla `servicios`
+-- AUTO_INCREMENT de la tabla `servicio`
 --
-ALTER TABLE `servicios`
-  MODIFY `IdServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `servicio`
+  MODIFY `IdServicio` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IdUsuario` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdUsuario` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -362,27 +408,52 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `agendamiento`
 --
 ALTER TABLE `agendamiento`
-  ADD CONSTRAINT `agendamiento_ibfk_2` FOREIGN KEY (`IdServicio`) REFERENCES `servicios` (`IdServicio`),
-  ADD CONSTRAINT `agendamiento_ibfk_3` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleado` (`IdEmpleado`);
+  ADD CONSTRAINT `agendamiento_ibfk_3` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`),
+  ADD CONSTRAINT `agendamiento_ibfk_4` FOREIGN KEY (`IdServicio`) REFERENCES `servicio` (`IdServicio`);
 
 --
 -- Filtros para la tabla `detalleprestamo`
 --
 ALTER TABLE `detalleprestamo`
-  ADD CONSTRAINT `detalleprestamo_ibfk_1` FOREIGN KEY (`IdHerramientaInsumo`) REFERENCES `herramientainsumo` (`IdHerramientaInsumo`);
+  ADD CONSTRAINT `detalleprestamo_ibfk_1` FOREIGN KEY (`IdHerramientaInsumo`) REFERENCES `herramientainsumo` (`IdHerramientaInsumo`),
+  ADD CONSTRAINT `detalleprestamo_ibfk_2` FOREIGN KEY (`IdPrestamo`) REFERENCES `prestamo` (`IdPrestamo`);
+
+--
+-- Filtros para la tabla `herramientadanada`
+--
+ALTER TABLE `herramientadanada`
+  ADD CONSTRAINT `herramientadanada_ibfk_1` FOREIGN KEY (`IdHerramientaInsumo`) REFERENCES `herramientainsumo` (`IdHerramientaInsumo`),
+  ADD CONSTRAINT `herramientadanada_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`);
+
+--
+-- Filtros para la tabla `insumoagenda`
+--
+ALTER TABLE `insumoagenda`
+  ADD CONSTRAINT `insumoagenda_ibfk_1` FOREIGN KEY (`IdAgendamiento`) REFERENCES `agendamiento` (`IdAgendamiento`);
+
+--
+-- Filtros para la tabla `novedad`
+--
+ALTER TABLE `novedad`
+  ADD CONSTRAINT `novedad_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`);
 
 --
 -- Filtros para la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  ADD CONSTRAINT `prestamo_ibfk_2` FOREIGN KEY (`IdHerramientaInsumo`) REFERENCES `herramientainsumo` (`IdHerramientaInsumo`),
-  ADD CONSTRAINT `prestamo_ibfk_3` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleado` (`IdEmpleado`);
+  ADD CONSTRAINT `prestamo_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`);
+
+--
+-- Filtros para la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD CONSTRAINT `rol_ibfk_1` FOREIGN KEY (`IdPermiso`) REFERENCES `permiso` (`IdPermiso`);
 
 --
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `Usuario_ibfk_1` FOREIGN KEY (`IdRol`) REFERENCES `rol` (`IdRol`);
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`IdRol`) REFERENCES `rol` (`IdRol`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

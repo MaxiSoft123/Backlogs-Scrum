@@ -1,10 +1,16 @@
+
 <div class="ContenedorListar">
     <div class="NombreTabla">
         <h1>Lista Prestamos</h1>
         <img src="assets/Iconos/prestamos2.svg" alt="">
     </div>
-
-
+    <br>
+    <center>
+<button class="BotonVerde" onclick="CambiarEmpleado('Prestamos')">Mis Prestamos</button>
+<button class="BotonRojo" onclick="CambiarEmpleado('Dañada')">Mis Herramientas Dañadas</button>
+</center>
+<br>
+<div class="CambiarEmpleado">
     <main class="table">
         <section class="TableBody">
             <table>
@@ -18,14 +24,12 @@
                     </tr>
                 </thead>
                 <tbody id="ListarPrestamoEmpleado">
-
-
- 
-            
                 </tbody>
             </table>
         </section>
     </main>
+</div>
+
 </div>
 
 
@@ -33,5 +37,6 @@
 <script>
     $(document).ready(function() {
         ListarPrestamoEmpleado();
+    
     });
 </script>
